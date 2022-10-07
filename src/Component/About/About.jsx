@@ -1,8 +1,20 @@
-import React from 'react'
-import Button from '@mui/material/Button'
+import Coursel from '../../utils/Coursel'
+import { Typography, Stack } from '@mui/material/'
 
-const About = () => {
-  return <Button variant='contained'>Hello World</Button>
+export default function About () {
+  return (
+    <>
+      <Stack>
+        <Coursel />
+        <Typography
+          variant='h3'
+          sx={{ color: 'primary.main', textAlign: 'center' }}
+          component='div'
+          
+        >
+          Welcome to Transfy
+        </Typography>
+      </Stack>
+    </>
+  )
 }
-
-export default About

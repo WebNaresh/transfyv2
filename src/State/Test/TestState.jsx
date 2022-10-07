@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TestContext from './TestContext'
 export const TestState = props => {
-  const state = { name: 'harry', class: '5b' }
+  const [state, setState] = React.useState(false)
+  const [time, setTime] = useState(true)
+  const toggleDrawer = value => event => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return
+    }
+
+    setState(value)
+    console.log('hello ', value)
+    console.log(state)
+  }
+  setTimeout(() => {
+    setTime(false)
+  }, 3000)
+
   return (
-    <TestContext.Provider value={{ state }}>
+    <TestContext.Provider value={{ state, setState, toggleDrawer, time }}>
       {props.children}
     </TestContext.Provider>
   )
