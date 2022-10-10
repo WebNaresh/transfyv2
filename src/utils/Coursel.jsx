@@ -1,8 +1,7 @@
 import React from 'react'
-import { Paper, Button, Backdrop } from '@mui/material'
+import { Button, } from '@mui/material'
 import Carousel from 'react-material-ui-carousel'
-import { margin, Stack } from '@mui/system'
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
+import { Stack } from '@mui/system'
 const Coursel = () => {
   let items = [
     {
@@ -30,7 +29,7 @@ const Coursel = () => {
         'https://images.unsplash.com/photo-1569098272587-7af816a8293c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
     }
   ]
-  function Item (props) {
+  function Item(props) {
     return (
       <Stack>
         <Button

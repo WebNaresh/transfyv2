@@ -7,8 +7,31 @@ const Home = () => {
     <>
       <Stack mt={7}>
         <Card index={1} />
+
         <Card index={2} />
+
         <Card index={3} />
+        <Card index={1} />
+
+        <Card index={2} />
+
+        <Card index={3} />
+        <Card index={1} />
+
+        <Card index={2} />
+
+        <Card index={3} />
+        <Card index={1} />
+
+        <Card index={2} />
+
+        <Card index={3} />
+        <Card index={1} />
+
+        <Card index={2} />
+
+        <Card index={3} />
+
       </Stack>
     </>
   )
