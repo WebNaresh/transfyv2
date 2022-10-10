@@ -1,29 +1,34 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import { IconButton } from "@mui/material/";
-import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import Drawer from "@mui/material/Drawer";
-import { List, Typography } from "@mui/material";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import CachedOutlinedIcon from "@mui/icons-material/CachedOutlined";
-import LoginIcon from "@mui/icons-material/Login";
-import Notification from "@mui/icons-material/Notifications";
-import TestContext from "../../State/Test/TestContext";
-import CastForEducationIcon from "@mui/icons-material/CastForEducation";
-import SchoolIcon from "@mui/icons-material/School";
-import InfoIcon from "@mui/icons-material/Info";
-import FestivalOutlinedIcon from "@mui/icons-material/FestivalOutlined";
-import { Badge } from "@mui/material";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  MenuItem,
+  Menu,
+  Drawer,
+  List,
+  Typography,
+  Divider,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Badge,
+} from "@mui/material/";
+import {
+  AccountCircle,
+  Notifications,
+  CachedOutlined,
+  Menu as MenuIcon,
+  CastForEducation,
+  School,
+  FestivalOutlined,
+  Login,
+  Info,
+} from "@mui/icons-material/";
 import { Link } from "react-router-dom";
+import TestContext from "../../State/Test/TestContext";
 
 const TopNavaigation = () => {
   const { toggleDrawer, state } = React.useContext(TestContext);
@@ -46,7 +51,7 @@ const TopNavaigation = () => {
           <Link to={"/about"}>
             <ListItemButton onClick={toggleDrawer(false)}>
               <ListItemIcon>
-                <InfoIcon />
+                <Info />
               </ListItemIcon>
               <ListItemText primary={"About College"} />
             </ListItemButton>
@@ -56,7 +61,7 @@ const TopNavaigation = () => {
           <Link to={"/process"}>
             <ListItemButton onClick={toggleDrawer(false)}>
               <ListItemIcon>
-                <CachedOutlinedIcon />
+                <CachedOutlined />
               </ListItemIcon>
               <ListItemText primary={"College Admission Process"} />
             </ListItemButton>
@@ -66,7 +71,7 @@ const TopNavaigation = () => {
           <Link to={"/fest"}>
             <ListItemButton onClick={toggleDrawer(false)}>
               <ListItemIcon>
-                <FestivalOutlinedIcon />
+                <FestivalOutlined />
               </ListItemIcon>
               <ListItemText primary={"College Upcomming"} />
             </ListItemButton>
@@ -79,7 +84,8 @@ const TopNavaigation = () => {
           <Link to={"/login"}>
             <ListItemButton onClick={toggleDrawer(false)}>
               <ListItemIcon>
-                <LoginIcon />
+                {" "}
+                <Login />
               </ListItemIcon>
               <ListItemText primary={"Login"} />
             </ListItemButton>
@@ -89,7 +95,7 @@ const TopNavaigation = () => {
           <Link to={"/login"}>
             <ListItemButton onClick={toggleDrawer(false)}>
               <ListItemIcon>
-                <SchoolIcon />
+                <School />
               </ListItemIcon>
               <ListItemText primary={"Login as Student"} />
             </ListItemButton>
@@ -99,7 +105,7 @@ const TopNavaigation = () => {
           <Link to={"/login"}>
             <ListItemButton onClick={toggleDrawer(false)}>
               <ListItemIcon>
-                <CastForEducationIcon />
+                <CastForEducation />
               </ListItemIcon>
               <ListItemText primary={"Login as College Proffesional"} />
             </ListItemButton>
@@ -166,10 +172,10 @@ const TopNavaigation = () => {
               <MenuItem onClick={handleClose}>
                 <ListItemIcon>
                   <Badge badgeContent={17} color="error">
-                    <Notification />
+                    <Notifications />
                   </Badge>
                 </ListItemIcon>
-                Notification
+                Notifications
               </MenuItem>
             </Menu>
           </div>

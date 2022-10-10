@@ -1,32 +1,29 @@
-import * as React from "react";
 import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import { red } from "@mui/material/colors";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
-  Input,
-  InputAdornment,
-  Skeleton,
-  Stack,
-  TextareaAutosize,
-} from "@mui/material";
-import { Box } from "@mui/system";
+  Collapse,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Avatar,
+  IconButton,
+  Typography,
+  Card,
+} from "@mui/material/";
+import { red } from "@mui/material/colors";
+import {
+  FavoriteOutlined,
+  Share,
+  ExpandMore as ExpandMoreIcon,
+  MoreVert,
+  AccountCircle,
+  Favorite,
+  Send,
+} from "@mui/icons-material/";
+import { Input, InputAdornment, Skeleton, Stack, Box } from "@mui/material";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState, React } from "react";
 import TestContext from "../../State/Test/TestContext";
-import { AccountCircle, Favorite, Send } from "@mui/icons-material";
-import { useState } from "react";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -42,7 +39,7 @@ const ExpandMore = styled((props) => {
 export default function CardComponent() {
   const [inputVal, setInputVal] = useState("");
   const [fav, setFev] = useState(false);
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
   const date1 = new Date();
   const { time } = useContext(TestContext);
 
@@ -91,7 +88,7 @@ export default function CardComponent() {
           }
           action={
             <IconButton aria-label="settings">
-              <MoreVertIcon />
+              <MoreVert />
             </IconButton>
           }
           title="Shrimp and Chorizo Paella"
@@ -140,11 +137,11 @@ export default function CardComponent() {
                     fav === true ? setFev(false) : setFev(true);
                   }}
                 >
-                  <FavoriteBorderOutlinedIcon />
+                  <FavoriteOutlined />
                 </IconButton>
               )}
               <IconButton aria-label="share">
-                <ShareIcon />
+                <Share />
               </IconButton>
             </Stack>
             <Stack padding={2} width={"100vh"} direction={"row"}>

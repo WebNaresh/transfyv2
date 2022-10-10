@@ -1,6 +1,6 @@
 import Coursel from "../../utils/Coursel";
-import { Typography, Stack } from "@mui/material/";
-import GridStack from "../../utils/GridStack";
+import { Typography, Stack, Paper } from "@mui/material/";
+// import GridStack from "../../utils/GridStack";
 // {
 //   /* <GridStack /> */
 // }
@@ -8,7 +8,7 @@ import GridStack from "../../utils/GridStack";
 export default function About() {
   return (
     <>
-      <Stack mt={8}>
+      <Stack mx={4} mt={8}>
         <Coursel />
         <Typography
           my={5}
@@ -19,23 +19,23 @@ export default function About() {
         >
           Welcome to Transfy
         </Typography>
-        <Stack>
+        <Paper>
           <Typography
-            variant="h5"
+            mx={2}
+            variant="body1"
             lineHeight={2}
             component={"div"}
             textAlign={"left"}
             color="primary.light"
           >
             <Typography
-              variant="h5"
-              component={"p"}
+              variant="body1"
+              component={"div"}
               textAlign={"right"}
               color="primary.light"
             >
               {" "}
-              Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet
-              consectetur, adipisicing elit. Laborum,
+              Lorem ipsum dolor sit amet
             </Typography>
             aliquid corrupti ratione natus cupiditate dolor pariatur quam vel
             recusandae labore distinctio, suscipit quae, quis velit! Lorem ipsum
@@ -46,7 +46,7 @@ export default function About() {
             adipisicing elit. Praesentium animi sapiente, nisi dolorem
             perferendis, eligendi reprehenderit officia, rem id nobis minus
           </Typography>
-        </Stack>
+        </Paper>
         <Stack></Stack>
       </Stack>
     </>
