@@ -1,9 +1,7 @@
 import Coursel from "../../utils/Coursel";
-import { Typography, Stack, Paper } from "@mui/material/";
-// import GridStack from "../../utils/GridStack";
-// {
-//   /* <GridStack /> */
-// }
+import { Typography, Stack, Paper, Divider } from "@mui/material/";
+import AboutCard1 from "./AboutCard1/AboutCard1";
+import GridStack from "../../utils/GridStack";
 
 export default function About() {
   return (
@@ -47,8 +45,12 @@ export default function About() {
             perferendis, eligendi reprehenderit officia, rem id nobis minus
           </Typography>
         </Paper>
-        <Stack></Stack>
+        <Divider sx={{ margin: 2 }} />
+        <Stack>
+          <AboutCard1 />
+        </Stack>
       </Stack>
+      <GridStack />
     </>
   );
 }

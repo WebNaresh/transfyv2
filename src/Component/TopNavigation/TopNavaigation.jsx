@@ -38,6 +38,9 @@ const TopNavaigation = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
   const list = (anchor) => (
     <Box
@@ -142,7 +145,7 @@ const TopNavaigation = () => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               color="inherit"
-              onClick={() => setAnchorEl("open")}
+              onClick={handleClick}
             >
               <Badge badgeContent={17} color="error">
                 <AccountCircle />

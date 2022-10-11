@@ -9,6 +9,7 @@ import {
   IconButton,
   Typography,
   Card,
+  Divider,
 } from "@mui/material/";
 import { red } from "@mui/material/colors";
 import {
@@ -19,6 +20,7 @@ import {
   AccountCircle,
   Favorite,
   Send,
+  ExpandCircleDown,
 } from "@mui/icons-material/";
 import { Input, InputAdornment, Skeleton, Stack, Box } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -38,10 +40,11 @@ const ExpandMore = styled((props) => {
 
 export default function CardComponent() {
   const [inputVal, setInputVal] = useState("");
-  const [fav, setFev] = useState(false);
+  const [fav, setFav] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const date1 = new Date();
   const { time } = useContext(TestContext);
+  console.log(fav);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -94,57 +97,67 @@ export default function CardComponent() {
           title="Shrimp and Chorizo Paella"
           subheader="September 14, 2016"
         />
+        <Divider />
         {time ? (
           <Skeleton variant="rectangular" animation={"wave"} height={500} />
         ) : (
           <CardMedia
-            onDoubleClick={() => (fav === true ? setFev(false) : setFev(true))}
+            onDoubleClick={() => (fav === true ? setFav(false) : setFav(true))}
             component="img"
             loading="lazy"
             height="500"
-            sx={{ objectFit: "contain" }}
+            sx={{ objectFit: "contain", marginY: 2 }}
             image="https://picsum.photos/400/300"
             alt="Paella dish"
           />
         )}
-        <CardContent>
+        <CardContent sx={{ display: "flex " }}>
           <Typography
             variant="body1"
             fontSize={25}
             component={"div"}
             color="text.secondary"
+            fontWeight={4}
           >
             This impressive paella is a perfect party dish and a fun meal to
             cook together with your
           </Typography>
+          <ExpandMore
+            expand={expanded}
+            onClick={handleExpandClick}
+            aria-expanded={expanded}
+            aria-label="show more"
+          >
+            <ExpandMoreIcon />
+          </ExpandMore>
         </CardContent>
         <CardActions disableSpacing>
-          <Stack direction={"column"}>
+          <Stack direction={"column"} mx={4}>
             <Stack direction={"row"}>
               {fav === true ? (
                 <IconButton
                   aria-label="add to favorites"
                   onClick={() => {
-                    fav === true ? setFev(false) : setFev(true);
+                    fav === true ? setFav(false) : setFav(true);
                   }}
                 >
-                  <Favorite />
+                  <FavoriteOutlined />
                 </IconButton>
               ) : (
                 <IconButton
                   aria-label="add to favorites"
                   onClick={() => {
-                    fav === true ? setFev(false) : setFev(true);
+                    fav === true ? setFav(false) : setFav(true);
                   }}
                 >
-                  <FavoriteOutlined />
+                  <Favorite />
                 </IconButton>
               )}
               <IconButton aria-label="share">
                 <Share />
               </IconButton>
             </Stack>
-            <Stack padding={2} width={"100vh"} direction={"row"}>
+            <Stack my={2} width={"100vh"} direction={"row"}>
               <Input
                 fullWidth={true}
                 value={inputVal}
@@ -161,14 +174,6 @@ export default function CardComponent() {
               <IconButton>{inputVal.length > 0 ? <Send /> : <></>}</IconButton>
             </Stack>
           </Stack>
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
