@@ -2,6 +2,7 @@ import Coursel from "../../utils/Coursel";
 import { Typography, Stack, Paper, Divider } from "@mui/material/";
 import AboutCard1 from "./AboutCard1/AboutCard1";
 import GridStack from "../../utils/GridStack";
+import CollegeFeature from "./CollegeFeature/CollegeFeature";
 
 export default function About() {
   return (
@@ -20,15 +21,15 @@ export default function About() {
         <Paper>
           <Typography
             mx={2}
-            variant="body1"
+            variant="subtitle-2"
             lineHeight={2}
-            component={"div"}
+            component={"subtitle-2"}
             textAlign={"left"}
             color="primary.light"
           >
             <Typography
               variant="body1"
-              component={"div"}
+              component={"subtitle-2"}
               textAlign={"right"}
               color="primary.light"
             >
@@ -47,10 +48,25 @@ export default function About() {
         </Paper>
         <Divider sx={{ margin: 2 }} />
         <Stack>
+          <Typography
+            variant="h4"
+            color={"primary.main"}
+            textAlign={"center"}
+            component={"h2"}
+          >
+            College Proffesional's
+          </Typography>
+          <AboutCard1 />
+          <AboutCard1 />
           <AboutCard1 />
         </Stack>
+        <Stack>
+          <GridStack />
+        </Stack>
+        <Stack>
+          <CollegeFeature />
+        </Stack>
       </Stack>
-      <GridStack />
     </>
   );
 }

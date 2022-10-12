@@ -39,7 +39,7 @@ const AboutCard1 = () => {
               Mrs Naresh Bhosale (MB)
             </Typography>
             <Typography
-              variant="subtitle1"
+              variant="subtitle21"
               color="text.secondary"
               component="div"
             >
@@ -55,7 +55,7 @@ const AboutCard1 = () => {
             sx={{
               display: "flex",
               alignItems: "center",
-              flexDirection: { md: "row-reverse", xs: "column" },
+              flexDirection: { md: "row", xs: "column" },
               margin: 2,
               pl: 1,
               pb: 1,
@@ -68,7 +68,7 @@ const AboutCard1 = () => {
                 src="https://images.unsplash.com/photo-1661125644816-f53f64ffe570?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
               />
             </Stack>
-            <Stack component={"h4"}>Mrs Naresh Bhosale (MB)</Stack>
+            <Stack component={"subtitle-2"}>Mrs Naresh Bhosale (MB)</Stack>
           </Box>
         </Box>
         <CardMedia>
@@ -104,12 +104,12 @@ const AboutCard1 = () => {
               Mrs Naresh Bhosale (MB)
             </Typography>
             <Typography
-              variant="subtitle1"
+              variant="subtitle2"
               color="text.secondary"
               component="div"
               textAlign={"right"}
               sx={{
-                textAlign: { md: "left", xs: "left" },
+                textAlign: { md: "right", xs: "left" },
               }}
             >
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -137,7 +137,7 @@ const AboutCard1 = () => {
                 src="https://images.unsplash.com/photo-1661125644816-f53f64ffe570?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
               />
             </Stack>
-            <Stack component={"h4"}>Mrs Naresh Bhosale (MB)</Stack>
+            <Stack component={"subtitle-2"}>Mrs Naresh Bhosale (MB)</Stack>
           </Box>
         </Box>
         <CardMedia>

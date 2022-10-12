@@ -26,11 +26,15 @@ import {
   FestivalOutlined,
   Login,
   Info,
+  Home,
 } from "@mui/icons-material/";
 import { Link } from "react-router-dom";
 import TestContext from "../../State/Test/TestContext";
+import UseEffect from "../../State/UseEffect/UseEffectContext";
 
 const TopNavaigation = () => {
+  const { location } = React.useContext(UseEffect);
+
   const { toggleDrawer, state } = React.useContext(TestContext);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -50,70 +54,108 @@ const TopNavaigation = () => {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        <ListItem onClick={toggleDrawer(false)}>
-          <Link to={"/about"}>
-            <ListItemButton onClick={toggleDrawer(false)}>
-              <ListItemIcon>
-                <Info />
-              </ListItemIcon>
-              <ListItemText primary={"About College"} />
-            </ListItemButton>
-          </Link>
-        </ListItem>
-        <ListItem onClick={toggleDrawer(false)}>
-          <Link to={"/process"}>
-            <ListItemButton onClick={toggleDrawer(false)}>
-              <ListItemIcon>
-                <CachedOutlined />
-              </ListItemIcon>
-              <ListItemText primary={"College Admission Process"} />
-            </ListItemButton>
-          </Link>
-        </ListItem>
-        <ListItem onClick={toggleDrawer(false)}>
-          <Link to={"/fest"}>
-            <ListItemButton onClick={toggleDrawer(false)}>
-              <ListItemIcon>
-                <FestivalOutlined />
-              </ListItemIcon>
-              <ListItemText primary={"College Upcomming"} />
-            </ListItemButton>
-          </Link>
-        </ListItem>
+        {location.pathname !== "/" ? (
+          <ListItem onClick={toggleDrawer(false)}>
+            <Link to={"/"}>
+              <ListItemButton onClick={toggleDrawer(false)}>
+                <ListItemIcon>
+                  <Home />
+                </ListItemIcon>
+                <ListItemText primary={"Home"} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+        ) : (
+          ""
+        )}
+        {location.pathname !== "/about" ? (
+          <ListItem onClick={toggleDrawer(false)}>
+            <Link to={"/about"}>
+              <ListItemButton onClick={toggleDrawer(false)}>
+                <ListItemIcon>
+                  <Info />
+                </ListItemIcon>
+                <ListItemText primary={"About College"} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+        ) : (
+          ""
+        )}
+        {location.pathname !== "/process" ? (
+          <ListItem onClick={toggleDrawer(false)}>
+            <Link to={"/process"}>
+              <ListItemButton onClick={toggleDrawer(false)}>
+                <ListItemIcon>
+                  <CachedOutlined />
+                </ListItemIcon>
+                <ListItemText primary={"College Admission Process"} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+        ) : (
+          ""
+        )}
+        {location.pathname !== "/fest" ? (
+          <ListItem onClick={toggleDrawer(false)}>
+            <Link to={"/fest"}>
+              <ListItemButton onClick={toggleDrawer(false)}>
+                <ListItemIcon>
+                  <FestivalOutlined />
+                </ListItemIcon>
+                <ListItemText primary={"College Upcomming"} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+        ) : (
+          ""
+        )}
       </List>
       <Divider />
       <List>
-        <ListItem onClick={toggleDrawer(false)}>
-          <Link to={"/login"}>
-            <ListItemButton onClick={toggleDrawer(false)}>
-              <ListItemIcon>
-                {" "}
-                <Login />
-              </ListItemIcon>
-              <ListItemText primary={"Login"} />
-            </ListItemButton>
-          </Link>
-        </ListItem>
-        <ListItem onClick={toggleDrawer(false)}>
-          <Link to={"/login"}>
-            <ListItemButton onClick={toggleDrawer(false)}>
-              <ListItemIcon>
-                <School />
-              </ListItemIcon>
-              <ListItemText primary={"Login as Student"} />
-            </ListItemButton>
-          </Link>
-        </ListItem>
-        <ListItem onClick={toggleDrawer(false)}>
-          <Link to={"/login"}>
-            <ListItemButton onClick={toggleDrawer(false)}>
-              <ListItemIcon>
-                <CastForEducation />
-              </ListItemIcon>
-              <ListItemText primary={"Login as College Proffesional"} />
-            </ListItemButton>
-          </Link>
-        </ListItem>
+        {location.pathname !== "/login" ? (
+          <ListItem onClick={toggleDrawer(false)}>
+            <Link to={"/login"}>
+              <ListItemButton onClick={toggleDrawer(false)}>
+                <ListItemIcon>
+                  {" "}
+                  <Login />
+                </ListItemIcon>
+                <ListItemText primary={"Login"} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+        ) : (
+          ""
+        )}
+        {location.pathname !== "/studentLogin" ? (
+          <ListItem onClick={toggleDrawer(false)}>
+            <Link to={"/studentLogin"}>
+              <ListItemButton onClick={toggleDrawer(false)}>
+                <ListItemIcon>
+                  <School />
+                </ListItemIcon>
+                <ListItemText primary={"Login as Student"} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+        ) : (
+          ""
+        )}
+        {location.pathname !== "/teacher" ? (
+          <ListItem onClick={toggleDrawer(false)}>
+            <Link to={"/teacher"}>
+              <ListItemButton onClick={toggleDrawer(false)}>
+                <ListItemIcon>
+                  <CastForEducation />
+                </ListItemIcon>
+                <ListItemText primary={"Login as College Proffesional"} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+        ) : (
+          ""
+        )}
       </List>
     </Box>
   );
@@ -123,7 +165,7 @@ const TopNavaigation = () => {
       <Drawer anchor={"top"} open={state} onClose={toggleDrawer(false)}>
         {list("top")}
       </Drawer>
-      <AppBar position="fixed">
+      <AppBar position="absolute">
         <Toolbar>
           <IconButton
             size="large"

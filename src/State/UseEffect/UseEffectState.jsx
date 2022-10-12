@@ -1,11 +1,13 @@
-import React from 'react'
-import UseEffectContext from './UseEffectContext'
-export const UseEffectState = props => {
-  const state = { name: 'harry', class: '5b' }
+import React from "react";
+import { useLocation } from "react-router-dom";
+import UseEffectContext from "./UseEffectContext";
+export const UseEffectState = (props) => {
+  const location = useLocation();
+
   return (
-    <UseEffectContext.Provider value={{ state }}>
+    <UseEffectContext.Provider value={{ location }}>
       {props.children}
     </UseEffectContext.Provider>
-  )
-}
-export default UseEffectState
+  );
+};
+export default UseEffectState;

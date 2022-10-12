@@ -1,10 +1,4 @@
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardContent,
-  CardMedia,
-} from "@mui/material";
+import { Card, CardActionArea, CardMedia } from "@mui/material";
 
 export default function AboutCard() {
   return (

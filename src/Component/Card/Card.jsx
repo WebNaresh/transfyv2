@@ -20,7 +20,6 @@ import {
   AccountCircle,
   Favorite,
   Send,
-  ExpandCircleDown,
 } from "@mui/icons-material/";
 import { Input, InputAdornment, Skeleton, Stack, Box } from "@mui/material";
 import { Link } from "react-router-dom";
@@ -42,9 +41,7 @@ export default function CardComponent() {
   const [inputVal, setInputVal] = useState("");
   const [fav, setFav] = useState(false);
   const [expanded, setExpanded] = useState(false);
-  const date1 = new Date();
   const { time } = useContext(TestContext);
-  console.log(fav);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
