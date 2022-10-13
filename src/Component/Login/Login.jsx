@@ -2,12 +2,18 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import { Stack } from "@mui/material";
+import {
+  Box,
+  Stack,
+  TextField,
+  Typography,
+  Tab,
+  Tabs,
+  AppBar,
+  Button,
+  Paper,
+} from "@mui/material";
+import { AccountCircle, Verified, VerifiedUser } from "@mui/icons-material";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -57,16 +63,16 @@ export default function FullWidthTabs() {
   return (
     <Stack
       sx={{
-        justifyContent: "center",
+        alignItems: "center",
         display: "flex",
         flexDirection: "column",
       }}
     >
       <Box
-        mt={12}
+        m={12}
         sx={{
           bgcolor: "background.paper",
-          width: 500,
+          borderRadius: 2,
         }}
       >
         <AppBar position="static">
@@ -78,9 +84,9 @@ export default function FullWidthTabs() {
             variant="fullWidth"
             aria-label="full width tabs example"
           >
-            <Tab label="Item One" {...a11yProps(0)} />
-            <Tab label="Item Two" {...a11yProps(1)} />
-            <Tab label="Item Three" {...a11yProps(2)} />
+            <Tab label="Login as newbie" {...a11yProps(0)} />
+            <Tab disabled label="Login as Teacher" {...a11yProps(1)} />
+            <Tab disabled label="Login as Student" {...a11yProps(2)} />
           </Tabs>
         </AppBar>
         <SwipeableViews
@@ -89,13 +95,44 @@ export default function FullWidthTabs() {
           onChangeIndex={handleChangeIndex}
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
-            Item One
+            <Paper
+              elevation={10}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "column",
+                padding: 4,
+              }}
+            >
+              <Stack>
+                <AccountCircle fontSize={"large"} />
+              </Stack>
+              <Stack mb={2}>
+                <TextField
+                  id="standard-basic"
+                  label="Email"
+                  variant="standard"
+                />
+              </Stack>
+              <Stack mb={2}>
+                <TextField
+                  id="standard-basic"
+                  label="Password"
+                  variant="standard"
+                  type={"password"}
+                />
+              </Stack>
+              <Stack my={2}>
+                <Button variant="contained">Login</Button>
+              </Stack>
+            </Paper>
           </TabPanel>
           <TabPanel value={value} index={1} dir={theme.direction}>
-            Item Two
+            Login as Teacher
           </TabPanel>
           <TabPanel value={value} index={2} dir={theme.direction}>
-            Item Three
+            Login as newbie
           </TabPanel>
         </SwipeableViews>
       </Box>

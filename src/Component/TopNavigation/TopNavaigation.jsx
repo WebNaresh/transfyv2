@@ -27,6 +27,7 @@ import {
   Login,
   Info,
   Home,
+  Forum,
 } from "@mui/icons-material/";
 import { Link } from "react-router-dom";
 import TestContext from "../../State/Test/TestContext";
@@ -208,20 +209,34 @@ const TopNavaigation = () => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <MenuItem onClick={handleClose}>
-                <ListItemIcon>
-                  <AccountCircle />
-                </ListItemIcon>
-                Profile
-              </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <ListItemIcon>
-                  <Badge badgeContent={17} color="error">
-                    <Notifications />
-                  </Badge>
-                </ListItemIcon>
-                Notifications
-              </MenuItem>
+              <Link to={"/profile"}>
+                <MenuItem onClick={handleClose}>
+                  <ListItemIcon>
+                    <AccountCircle />
+                  </ListItemIcon>
+                  Profile
+                </MenuItem>
+              </Link>
+              <Link to={"/notifivation"}>
+                <MenuItem onClick={handleClose}>
+                  <ListItemIcon>
+                    <Badge badgeContent={17} color="error">
+                      <Notifications />
+                    </Badge>
+                  </ListItemIcon>
+                  Notifications
+                </MenuItem>
+              </Link>
+              <Link to={"/chat"}>
+                <MenuItem onClick={handleClose}>
+                  <ListItemIcon>
+                    <Badge color="error">
+                      <Forum />
+                    </Badge>
+                  </ListItemIcon>
+                  chat
+                </MenuItem>
+              </Link>
             </Menu>
           </div>
         </Toolbar>
