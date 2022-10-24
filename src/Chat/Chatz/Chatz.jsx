@@ -65,13 +65,11 @@ export function Chatz() {
                 <Typography
                   sx={{ display: "inline" }}
                   component="div"
-                  variant="body2"
+                  variant="body1"
                   color="text.primary"
                 >
-                  Ali Connors
+                  Ali Connors — I'll be in your neighborhood doing errands this…
                 </Typography>
-
-                {" — I'll be in your neighborhood doing errands this…"}
               </Badge>
             </Stack>
           }
