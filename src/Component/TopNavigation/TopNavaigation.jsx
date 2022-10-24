@@ -21,13 +21,13 @@ import {
   Notifications,
   CachedOutlined,
   Menu as MenuIcon,
-  CastForEducation,
   School,
   FestivalOutlined,
   Login,
   Info,
   Home,
   Forum,
+  BookOnline,
 } from "@mui/icons-material/";
 import { Link } from "react-router-dom";
 import TestContext from "../../State/Test/TestContext";
@@ -143,14 +143,14 @@ const TopNavaigation = () => {
         ) : (
           ""
         )}
-        {location.pathname !== "/teacher" ? (
+        {location.pathname !== "/collegeMaterials" ? (
           <ListItem onClick={toggleDrawer(false)}>
-            <Link to={"/teacher"}>
+            <Link to={"/collegeMaterials"}>
               <ListItemButton onClick={toggleDrawer(false)}>
                 <ListItemIcon>
-                  <CastForEducation />
+                  <BookOnline />
                 </ListItemIcon>
-                <ListItemText primary={"Login as College Proffesional"} />
+                <ListItemText primary={"College Materials"} />
               </ListItemButton>
             </Link>
           </ListItem>

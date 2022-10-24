@@ -13,7 +13,7 @@ import {
   Button,
   Paper,
 } from "@mui/material";
-import { AccountCircle, Verified, VerifiedUser } from "@mui/icons-material";
+import { AccountCircle } from "@mui/icons-material";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

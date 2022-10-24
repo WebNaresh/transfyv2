@@ -3,8 +3,11 @@ import { Typography, Stack, Paper, Divider } from "@mui/material/";
 import AboutCard1 from "./AboutCard1/AboutCard1";
 import GridStack from "../../utils/GridStack";
 import CollegeFeature from "./CollegeFeature/CollegeFeature";
+import { useContext } from "react";
+import UseContext from "../../State/UseState/UseContext";
 
 export default function About() {
+  const { aboutInfo } = useContext(UseContext);
   return (
     <>
       <Stack mx={4} mt={8}>
@@ -16,7 +19,7 @@ export default function About() {
           sx={{ color: "primary.main", textAlign: "center" }}
           component="div"
         >
-          Welcome to Transfy
+          Welcome to Sushila Shakarao Mahavidyalaya
         </Typography>
         <Paper>
           <Typography
@@ -34,16 +37,24 @@ export default function About() {
               color="primary.light"
             >
               {" "}
-              Lorem ipsum dolor sit amet
+              Sushila Shankarrao Gadhave Mahavidyalaya is Khandala Vibhag
+              Shikshan Samiti's only branch imparting higher education.
             </Typography>
-            aliquid corrupti ratione natus cupiditate dolor pariatur quam vel
-            recusandae labore distinctio, suscipit quae, quis velit! Lorem ipsum
-            dolor sit amet, Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit. Iste enim voluptatem possimus tenetur ipsam cum, quia dicta
-            maiores, ex repellendus at totam quas non aperiam ullam quis
-            molestias earum veniam nulla vero porro id maxime! consectetur
-            adipisicing elit. Praesentium animi sapiente, nisi dolorem
-            perferendis, eligendi reprehenderit officia, rem id nobis minus
+            The college was established in 2007-08. It is permanently
+            non-granted college affiliated to Shivaji University, Kolhapur The
+            college has four faculties Arts, Commerce, Science and IT Besides
+            thesetraditional courses, college also runs various need based
+            career oriented courses like Diploma in Hindi-anuvad, Diploma in
+            Marathi Laghu-Sahitya Parichaya, Diploma in Library Management,
+            Vocational courses. Along with these courses college also organizes
+            skill based and vocational workshops. College lays stress on
+            personality development of the students through N.S.S, cultural,
+            sports and co-curricular activities. Competitive examination
+            guidance center is also run by college. We also have study center of
+            Yashwantrao Chavan Maharashtra Open University, Nasik For
+            empowerment of girls in the rural area department of physical
+            Education and Sports conducted a short duration Self-defense
+            Training Course.
           </Typography>
         </Paper>
         <Divider sx={{ margin: 2 }} />
@@ -56,9 +67,27 @@ export default function About() {
           >
             College Proffesional's
           </Typography>
-          <AboutCard1 />
-          <AboutCard1 />
-          <AboutCard1 />
+          {aboutInfo.map(({ name, url, message, index }) => {
+            {
+              return index % 2 === 0 ? (
+                <AboutCard1
+                  key={index}
+                  side={"right"}
+                  name={name}
+                  url={url}
+                  message={message}
+                />
+              ) : (
+                <AboutCard1
+                  key={index}
+                  side={"left"}
+                  name={name}
+                  url={url}
+                  message={message}
+                />
+              );
+            }
+          })}
         </Stack>
         <Stack>
           <GridStack />
