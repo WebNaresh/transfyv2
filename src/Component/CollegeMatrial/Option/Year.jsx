@@ -13,23 +13,18 @@ export default function Dept() {
       <Autocomplete
         value={collegeMaterialForm.Year}
         onChange={(event, newValue) => {
-          console.log(newValue);
           if (typeof newValue === "string") {
-            console.log(1);
             setCollegeMaterialForm((existed) => ({
               ...existed,
               Year: newValue.title,
             }));
           } else if (newValue && newValue.inputValue) {
-            console.log(2);
             // Create a new value from the user input
             setCollegeMaterialForm((existed) => ({
               ...existed,
               Year: newValue.title,
             }));
           } else if (newValue === null) {
-            console.log(3);
-            console.log(newValue);
             setCollegeMaterialForm((existed) => ({
               ...existed,
               Year: null,
