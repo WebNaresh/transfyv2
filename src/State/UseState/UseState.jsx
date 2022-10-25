@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import UseContext from "./UseContext";
 export const UseState = (props) => {
   const state = { name: "harry", class: "5b" };
+
+  const [chatInput, setChatInput] = useState("");
+
   const [window1, setWindow1] = useState(window);
+
   const [pdf, setPdf] = useState(false);
+
   const [collegeMaterialForm, setCollegeMaterialForm] = useState({
     Department: null,
     Name: null,
     Year: null,
     Semester: null,
   });
+
   const [aboutInfo, setAboutInfo] = useState([
     {
       name: "Dr. S R Bamane",
@@ -26,6 +32,7 @@ export const UseState = (props) => {
       index: 2,
     },
   ]);
+
   const [material, setMaterial] = useState({
     Department: [
       { title: "Bachelor Of Computer Application" },
@@ -39,12 +46,55 @@ export const UseState = (props) => {
       { title: "Yash Lenin Chavan" },
     ],
 
-    Sem: [{ title: "Please Choose Year First" }],
+    Sem: [
+      { title: "1" },
+      { title: "2" },
+      { title: "3" },
+      { title: "4" },
+      { title: "5" },
+      { title: "6" },
+    ],
     Semfor1stYear: [{ title: "1" }, { title: "2" }],
     Semfor2ndYear: [{ title: "3" }, { title: "4" }],
     Semfor3rdYear: [{ title: "5" }, { title: "6" }],
     Year: [{ title: "1st Year" }, { title: "2nd Year" }, { title: "3rd Year" }],
   });
+
+  const [user, setUser] = useState({
+    name: "naresh",
+    email: null,
+    id: 1,
+    status: null,
+    avatar: null,
+  });
+
+  const [currentUser, setCurrentUser] = useState({
+    name: "omkar",
+    email: null,
+    id: 2,
+    status: null,
+    avatar: null,
+  });
+
+  const [messages, setMessages] = useState([
+    {
+      userId: 2,
+      userMessage: [
+        "Hi Jenny, How r u today?",
+        "Did you train yesterday",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat lacus laoreet non curabitur gravida.",
+      ],
+    },
+    {
+      userId: 1,
+      userMessage: [
+        "iam naresh",
+        "Hi Jenny, How r u today?",
+        "Did you train yesterday",
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat lacus laoreet non curabitur gravida.",
+      ],
+    },
+  ]);
 
   return (
     <UseContext.Provider
@@ -60,6 +110,14 @@ export const UseState = (props) => {
         setMaterial,
         collegeMaterialForm,
         setCollegeMaterialForm,
+        user,
+        setUser,
+        currentUser,
+        setCurrentUser,
+        messages,
+        setMessages,
+        chatInput,
+        setChatInput,
       }}
     >
       {props.children}

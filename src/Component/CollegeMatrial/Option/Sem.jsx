@@ -2,40 +2,19 @@ import { React, useContext } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
 import UseContext from "../../../State/UseState/UseContext";
+import MaterialContext from "../../../State/Material/MaterialContext";
 
 export default function Dept() {
   const { material, collegeMaterialForm, setCollegeMaterialForm } =
     useContext(UseContext);
+  const { handleSemesterAutoComplete } = useContext(MaterialContext);
 
   const filter = createFilterOptions();
   return (
     <>
       <Autocomplete
         value={collegeMaterialForm.Semester}
-        onChange={(event, newValue) => {
-          if (typeof newValue === "string") {
-            setCollegeMaterialForm((existed) => ({
-              ...existed,
-              Semester: newValue.title,
-            }));
-          } else if (newValue && newValue.inputValue) {
-            // Create a new value from the user input
-            setCollegeMaterialForm((existed) => ({
-              ...existed,
-              Semester: newValue.title,
-            }));
-          } else if (newValue === null) {
-            setCollegeMaterialForm((existed) => ({
-              ...existed,
-              Semester: null,
-            }));
-          } else {
-            setCollegeMaterialForm((existed) => ({
-              ...existed,
-              Semester: newValue.title,
-            }));
-          }
-        }}
+        onChange={handleSemesterAutoComplete}
         filterOptions={(options, params) => {
           const filtered = filter(options, params);
 

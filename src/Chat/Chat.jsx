@@ -23,14 +23,17 @@ const Chat = () => {
           <InputBase
             classes={styles}
             fullWidth
+            color="none"
             sx={{
-              paddingX: 1,
-              paddingY: 0.5,
-              color: "GrayText",
-              borderColor: "GrayText",
-              ":active": {
-                borderColor: "GrayText !important ",
-              },
+              paddingX: "1rem !important",
+              paddingY: "0.5rem !important",
+              color: "ActiveBorder !important",
+              backgroundColor: "GrayText !important",
+              border: "white !important",
+              // borderColor: "GrayText",
+              // ":active": {
+              //   borderColor: "GrayText !important ",
+              // },
             }}
             placeholder={"Search ..."}
           />

@@ -6,7 +6,8 @@ import UseState from "./State/UseState/UseState";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import TopNavaigation from "./Component/TopNavigation/TopNavaigation";
 import "./app.css";
-import Footer from "./utils/Footer/Footer";
+// import Footer from "./utils/Footer/Footer";
+import MaterialState from "./State/Material/MaterialState";
 
 function App() {
   const darkTheme = createTheme({
@@ -30,13 +31,15 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <BrowserRouter>
         <UseState>
-          <TestState>
-            <UseEffectState>
-              <TopNavaigation />
-              <Route />
-              <Footer />
-            </UseEffectState>
-          </TestState>
+          <MaterialState>
+            <TestState>
+              <UseEffectState>
+                <TopNavaigation />
+                <Route />
+                {/* <Footer /> */}
+              </UseEffectState>
+            </TestState>
+          </MaterialState>
         </UseState>
       </BrowserRouter>
     </ThemeProvider>

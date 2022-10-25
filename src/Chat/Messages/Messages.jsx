@@ -5,57 +5,35 @@ import { useRoundInputBaseStyles } from "@mui-treasury/styles/inputBase/round";
 import { Stack } from "@mui/system";
 import { IconButton, InputAdornment } from "@mui/material";
 import { Link, Send } from "@mui/icons-material";
+import { useRef } from "react";
+import { useEffect } from "react";
+import { useContext } from "react";
+import UseContext from "../../State/UseState/UseContext";
+import MaterialContext from "../../State/Material/MaterialContext";
 
 const Messages = () => {
   const styles = useRoundInputBaseStyles();
+  useEffect(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  }, []);
+  const { messages, setMessages, user, chatInput, setChatInput } =
+    useContext(UseContext);
+  const { sendMessageControl } = useContext(MaterialContext);
+
   return (
-    <Stack margin={2} mt={10}>
-      <ChatMsg
-        avatar={"N"}
-        messages={[
-          "Hi Jenny, How r u today?",
-          "Did you train yesterday",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat lacus laoreet non curabitur gravida.",
-        ]}
-      />
-      <ChatMsg
-        side={"right"}
-        messages={[
-          "Great! What's about you?",
-          "Of course I did. Speaking of which check this out",
-        ]}
-      />
-      <ChatMsg
-        avatar={""}
-        messages={[
-          "Hi Jenny, How r u today?",
-          "Did you train yesterday",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat lacus laoreet non curabitur gravida.",
-        ]}
-      />
-      <ChatMsg
-        side={"right"}
-        messages={[
-          "Great! What's about you?",
-          "Of course I did. Speaking of which check this out",
-        ]}
-      />
-      <ChatMsg
-        avatar={""}
-        messages={[
-          "Hi Jenny, How r u today?",
-          "Did you train yesterday",
-          "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat lacus laoreet non curabitur gravida.",
-        ]}
-      />
-      <ChatMsg
-        side={"right"}
-        messages={[
-          "Great! What's about you?",
-          "Of course I did. Speaking of which check this out",
-        ]}
-      />
-      <ChatMsg avatar={""} messages={["Im good.", "See u later."]} />
+    <Stack margin={2} my={10}>
+      {messages.map(({ userId, userMessage }, i2) => {
+        return (
+          <div key={i2}>
+            {userId === user.id ? (
+              <ChatMsg avatar={"N"} side={"right"} messages={userMessage} />
+            ) : (
+              <ChatMsg avatar={"N"} messages={userMessage} />
+            )}
+          </div>
+        );
+      })}
+
       <Stack
         width={"95%"}
         sx={{
@@ -67,7 +45,10 @@ const Messages = () => {
         <InputBase
           style={{
             padding: 8,
+            background: "#606162 !important",
           }}
+          value={chatInput}
+          onChange={(e) => setChatInput(e.currentTarget.value)}
           startAdornment={
             <InputAdornment position="start">
               <IconButton color={"primary"} size="large">
@@ -83,7 +64,11 @@ const Messages = () => {
           }
           endAdornment={
             <InputAdornment position="end">
-              <IconButton color={"primary"} size="large">
+              <IconButton
+                onClick={sendMessageControl}
+                color={"primary"}
+                size="large"
+              >
                 <Send
                   sx={{
                     height: 30,
