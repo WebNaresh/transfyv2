@@ -8,6 +8,7 @@ import TopNavaigation from "./Component/TopNavigation/TopNavaigation";
 import "./app.css";
 // import Footer from "./utils/Footer/Footer";
 import MaterialState from "./State/Material/MaterialState";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 function App() {
   const darkTheme = createTheme({
@@ -28,21 +29,23 @@ function App() {
   // xl: 1536,
   // }
   return (
-    <ThemeProvider theme={darkTheme}>
-      <BrowserRouter>
-        <UseState>
-          <MaterialState>
-            <TestState>
-              <UseEffectState>
-                <TopNavaigation />
-                <Route />
-                {/* <Footer /> */}
-              </UseEffectState>
-            </TestState>
-          </MaterialState>
-        </UseState>
-      </BrowserRouter>
-    </ThemeProvider>
+    <GoogleOAuthProvider clientId="736936910086-ofv78076dj70fplvt4gfk19mubvj5887.apps.googleusercontent.com">
+      <ThemeProvider theme={darkTheme}>
+        <BrowserRouter>
+          <UseState>
+            <MaterialState>
+              <TestState>
+                <UseEffectState>
+                  <TopNavaigation />
+                  <Route />
+                  {/* <Footer /> */}
+                </UseEffectState>
+              </TestState>
+            </MaterialState>
+          </UseState>
+        </BrowserRouter>
+      </ThemeProvider>
+    </GoogleOAuthProvider>
   );
 }
 

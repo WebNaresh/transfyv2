@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import UseContext from "./UseContext";
 export const UseState = (props) => {
   const state = { name: "harry", class: "5b" };
@@ -60,6 +61,8 @@ export const UseState = (props) => {
     Year: [{ title: "1st Year" }, { title: "2nd Year" }, { title: "3rd Year" }],
   });
 
+  const redirect = useNavigate();
+
   const [user, setUser] = useState({
     name: "naresh",
     email: null,
@@ -95,6 +98,7 @@ export const UseState = (props) => {
       ],
     },
   ]);
+  console.log(process.env.REACT_APP_BACKEND_STRING);
 
   return (
     <UseContext.Provider
@@ -118,6 +122,7 @@ export const UseState = (props) => {
         setMessages,
         chatInput,
         setChatInput,
+        redirect,
       }}
     >
       {props.children}

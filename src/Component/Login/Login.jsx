@@ -2,6 +2,7 @@ import * as React from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@mui/material/styles";
+import { GoogleLogin } from "@react-oauth/google";
 import {
   Box,
   Stack,
@@ -14,6 +15,8 @@ import {
   Paper,
 } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
+import { useContext } from "react";
+import MaterialContext from "../../State/Material/MaterialContext";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -50,6 +53,7 @@ function a11yProps(index) {
 
 export default function FullWidthTabs() {
   const theme = useTheme();
+  const { handleFailure, handleLogin } = useContext(MaterialContext);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -109,19 +113,21 @@ export default function FullWidthTabs() {
                 <AccountCircle fontSize={"large"} />
               </Stack>
               <Stack mb={2}>
-                <TextField
-                  id="standard-basic"
-                  label="Email"
-                  variant="standard"
-                />
-              </Stack>
-              <Stack mb={2}>
-                <TextField
-                  id="standard-basic"
-                  label="Password"
-                  variant="standard"
-                  type={"password"}
-                />
+                <Stack sx={{ margin: 2 }}>
+                  <GoogleLogin
+                    size="large"
+                    // type='icon'
+                    shape="square"
+                    width="400"
+                    theme="filled"
+                    auto_select="true"
+                    onSuccess={handleLogin}
+                    useOneTap={true}
+                    onError={handleFailure}
+                    logo_alignment={"left"}
+                    context={"signin"}
+                  />
+                </Stack>
               </Stack>
               <Stack my={2}>
                 <Button variant="contained">Login</Button>
