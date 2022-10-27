@@ -4,6 +4,7 @@ import UseContext from "../UseState/UseContext";
 import MaterialContext from "./MaterialContext";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
+import ApiContext from "../ApiHandler/ApiContext";
 
 export const MaterialState = (props) => {
   const {
@@ -18,7 +19,10 @@ export const MaterialState = (props) => {
     setUser,
     currentUser,
     redirect,
+    setCookie,
+    cookies,
   } = useContext(UseContext);
+  const { apiRequest } = useContext(ApiContext);
 
   const handleSemesterAutoComplete = (event, newValue) => {
     if (typeof newValue === "string") {
@@ -84,23 +88,13 @@ export const MaterialState = (props) => {
   };
   const handleLogin = async (credentialResponse) => {
     var { name, email, picture } = jwt_decode(credentialResponse.credential);
-    try {
-      const data = {
-        name,
-        email,
-        userImage: picture,
-      };
-      const config = { headers: { "Content-Type": "application/json" } };
-      const response = await axios
-        .post(process.env.REACT_APP_BACKEND_STRING, data, config)
-        .then((data) => console.log(data));
-    } catch (errors) {
-      console.log(errors);
+    if (cookies.token === undefined) {
+      await apiRequest(name, email, picture);
     }
 
-    setUser({ ...user, name, email, avatar: picture, status: true });
-    redirect("/");
+    // redirect("/");
   };
+
   return (
     <MaterialContext.Provider
       value={{

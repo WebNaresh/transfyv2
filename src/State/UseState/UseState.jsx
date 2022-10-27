@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UseContext from "./UseContext";
+import { useCookies } from "react-cookie";
 export const UseState = (props) => {
-  const state = { name: "harry", class: "5b" };
+  const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
 
   const [chatInput, setChatInput] = useState("");
+
+  const [friends, setFriends] = useState([]);
 
   const [window1, setWindow1] = useState(window);
 
@@ -66,7 +69,7 @@ export const UseState = (props) => {
   const [user, setUser] = useState({
     name: "naresh",
     email: null,
-    id: 1,
+    id: null,
     status: null,
     avatar: null,
   });
@@ -74,7 +77,7 @@ export const UseState = (props) => {
   const [currentUser, setCurrentUser] = useState({
     name: "omkar",
     email: null,
-    id: 2,
+    id: null,
     status: null,
     avatar: null,
   });
@@ -98,12 +101,10 @@ export const UseState = (props) => {
       ],
     },
   ]);
-  console.log(process.env.REACT_APP_BACKEND_STRING);
 
   return (
     <UseContext.Provider
       value={{
-        state,
         window1,
         setWindow1,
         pdf,
@@ -123,6 +124,11 @@ export const UseState = (props) => {
         chatInput,
         setChatInput,
         redirect,
+        cookies,
+        setCookie,
+        removeCookie,
+        friends,
+        setFriends,
       }}
     >
       {props.children}

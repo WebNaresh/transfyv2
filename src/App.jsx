@@ -9,6 +9,7 @@ import "./app.css";
 // import Footer from "./utils/Footer/Footer";
 import MaterialState from "./State/Material/MaterialState";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import ApiState from "./State/ApiHandler/ApiState";
 
 function App() {
   const darkTheme = createTheme({
@@ -33,15 +34,17 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <BrowserRouter>
           <UseState>
-            <MaterialState>
-              <TestState>
-                <UseEffectState>
-                  <TopNavaigation />
-                  <Route />
-                  {/* <Footer /> */}
-                </UseEffectState>
-              </TestState>
-            </MaterialState>
+            <ApiState>
+              <MaterialState>
+                <TestState>
+                  <UseEffectState>
+                    <TopNavaigation />
+                    <Route />
+                    {/* <Footer /> */}
+                  </UseEffectState>
+                </TestState>
+              </MaterialState>
+            </ApiState>
           </UseState>
         </BrowserRouter>
       </ThemeProvider>

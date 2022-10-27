@@ -15,6 +15,7 @@ import {
   ListItemIcon,
   ListItemText,
   Badge,
+  Avatar,
 } from "@mui/material/";
 import {
   AccountCircle,
@@ -32,11 +33,15 @@ import {
 import { Link } from "react-router-dom";
 import TestContext from "../../State/Test/TestContext";
 import UseEffect from "../../State/UseEffect/UseEffectContext";
+import userEvent from "@testing-library/user-event";
+import UseContext from "../../State/UseState/UseContext";
 
 const TopNavaigation = () => {
   const { location } = React.useContext(UseEffect);
 
   const { toggleDrawer, state } = React.useContext(TestContext);
+
+  const { user } = React.useContext(UseContext);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -191,7 +196,11 @@ const TopNavaigation = () => {
               onClick={handleClick}
             >
               <Badge badgeContent={17} color="error">
-                <AccountCircle />
+                {user.avatar !== null ? (
+                  <Avatar src={user.avatar} sx={{ width: 40, height: 40 }} />
+                ) : (
+                  <AccountCircle />
+                )}
               </Badge>
             </IconButton>
             <Menu
@@ -212,12 +221,19 @@ const TopNavaigation = () => {
               <Link to={"/profile"}>
                 <MenuItem onClick={handleClose}>
                   <ListItemIcon>
-                    <AccountCircle />
+                    {user.avatar !== null ? (
+                      <Avatar
+                        src={user.avatar}
+                        sx={{ width: 24, height: 24 }}
+                      />
+                    ) : (
+                      <AccountCircle />
+                    )}
                   </ListItemIcon>
                   Profile
                 </MenuItem>
               </Link>
-              <Link to={"/notifivation"}>
+              <Link to={"/notification"}>
                 <MenuItem onClick={handleClose}>
                   <ListItemIcon>
                     <Badge badgeContent={17} color="error">
