@@ -197,7 +197,12 @@ const TopNavaigation = () => {
             >
               <Badge badgeContent={17} color="error">
                 {user.avatar !== null ? (
-                  <Avatar src={user.avatar} sx={{ width: 40, height: 40 }} />
+                  <Avatar
+                    imgProps={"lazy"}
+                    src={user.avatar}
+                    alt={user.name}
+                    sx={{ width: 40, height: 40 }}
+                  />
                 ) : (
                   <AccountCircle />
                 )}
@@ -221,6 +226,7 @@ const TopNavaigation = () => {
               <Link to={"/profile"}>
                 <MenuItem onClick={handleClose}>
                   <ListItemIcon>
+                    {console.log(user.avatar)}
                     {user.avatar !== null ? (
                       <Avatar
                         src={user.avatar}

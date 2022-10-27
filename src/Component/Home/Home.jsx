@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <>
       <Stack mt={7}>
-        <Stack>
+        <Stack sx={{ overflowY: "auto" }}>
           <Stories />
         </Stack>
         <Card index={1} />

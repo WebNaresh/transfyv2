@@ -15,7 +15,6 @@ export const UseEffectState = (props) => {
       let { user } = jwt_decode(cookies.token);
 
       setUser({
-        ...user,
         name: user.name,
         email: user.name,
         avatar: user.userImage,
