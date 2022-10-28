@@ -26,6 +26,7 @@ export const UseEffectState = (props) => {
     if (user.id === undefined || null) {
       apiFriendsRequest(user.id);
     }
+    console.log(cookies);
     // eslint-disable-next-line
   }, []);
 

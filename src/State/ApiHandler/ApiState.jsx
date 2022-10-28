@@ -2,11 +2,10 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import React from "react";
 import { useContext } from "react";
-import { redirect } from "react-router-dom";
 import UseContext from "../UseState/UseContext";
 import ApiContext from "./ApiContext";
 export const ApiState = (props) => {
-  const { setCookie, user, setUser, setFriends, friends, redirect } =
+  const { setCookie, user, setUser, setFriends, redirect } =
     useContext(UseContext);
   const apiRequest = (name, email, userImage) => {
     const data = {
@@ -15,7 +14,7 @@ export const ApiState = (props) => {
       userImage,
     };
     const config = { headers: { "Content-Type": "application/json" } };
-    const response = axios
+    axios
       .post(process.env.REACT_APP_BACKEND_STRING, data, config)
       .then((data) => {
         setUser({
@@ -42,16 +41,10 @@ export const ApiState = (props) => {
     axios
       .post(process.env.REACT_APP_BACKEND_FRIENDS_REQUEST, data, config)
       .then(({ data }) => {
-        console.log(data);
-
         setFriends(jwtDecode(data.users).users);
-      })
-      .catch((e) => console.log(e));
-    console.log();
+      });
   };
-  console.log(friends);
 
-  const cookieExtractor = () => {};
   return (
     <ApiContext.Provider value={{ apiRequest, apiFriendsRequest }}>
       {props.children}

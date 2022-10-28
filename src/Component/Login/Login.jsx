@@ -6,7 +6,6 @@ import { GoogleLogin } from "@react-oauth/google";
 import {
   Box,
   Stack,
-  TextField,
   Typography,
   Tab,
   Tabs,
@@ -116,7 +115,7 @@ export default function FullWidthTabs() {
                 <Stack sx={{ margin: 2 }}>
                   <GoogleLogin
                     size="large"
-                    // type='icon'
+                    type="icon"
                     shape="square"
                     width="400"
                     theme="filled"

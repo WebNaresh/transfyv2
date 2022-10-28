@@ -1,26 +1,20 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useContext } from "react";
 import UseContext from "../UseState/UseContext";
 import MaterialContext from "./MaterialContext";
 import jwt_decode from "jwt-decode";
-import axios from "axios";
 import ApiContext from "../ApiHandler/ApiContext";
 
 export const MaterialState = (props) => {
   const {
-    material,
-    setMaterial,
     collegeMaterialForm,
     setCollegeMaterialForm,
-    chatInput,
-    messages,
-    setMessages,
-    user,
+    setAppLoading,
+    appLoading,
     setUser,
-    currentUser,
-    redirect,
-    setCookie,
+
     cookies,
+    removeCookie,
   } = useContext(UseContext);
   const { apiRequest } = useContext(ApiContext);
 
@@ -87,12 +81,26 @@ export const MaterialState = (props) => {
     console.log(result);
   };
   const handleLogin = async (credentialResponse) => {
+    console.log(appLoading);
+    setAppLoading(true);
+    console.log(credentialResponse);
     var { name, email, picture } = jwt_decode(credentialResponse.credential);
+
     if (cookies.token === undefined) {
       await apiRequest(name, email, picture);
     }
+    setTimeout(() => {
+      setAppLoading(false);
+    }, 5000);
 
     // redirect("/");
+  };
+
+  const handleLogout = () => {
+    console.log(cookies.token);
+    removeCookie("token");
+    // cookies.token = undefined;
+    setUser({ name: null, email: null, avatar: null, status: null });
   };
 
   return (
@@ -102,6 +110,7 @@ export const MaterialState = (props) => {
         sendMessageControl,
         handleLogin,
         handleFailure,
+        handleLogout,
       }}
     >
       {props.children}

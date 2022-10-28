@@ -6,7 +6,6 @@ import Login from "./Component/Login/Login";
 import Chat from "./Chat/Chat";
 import Messages from "./Chat/Messages/Messages";
 import CollegeM from "./Component/CollegeMatrial/CollegeM";
-import Ex from "./Component/Ex";
 const App = () => {
   return (
     <Routes>
@@ -17,7 +16,6 @@ const App = () => {
       <Route exact path="/teacher" element={<Login />} />
       <Route exact path="/chat" element={<Chat />} />
       <Route exact path="/chat/messages" element={<Messages />} />
-      <Route exact path="/ex" element={<Ex />} />
     </Routes>
   );
 };

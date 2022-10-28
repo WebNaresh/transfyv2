@@ -10,6 +10,7 @@ import "./app.css";
 import MaterialState from "./State/Material/MaterialState";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import ApiState from "./State/ApiHandler/ApiState";
+import AppProgress from "./Component/Backdrop/Backdrop";
 
 function App() {
   const darkTheme = createTheme({
@@ -30,7 +31,7 @@ function App() {
   // xl: 1536,
   // }
   return (
-    <GoogleOAuthProvider clientId="736936910086-ofv78076dj70fplvt4gfk19mubvj5887.apps.googleusercontent.com">
+    <GoogleOAuthProvider clientId="94683515394-hmvlt9807662a50ott2jiro8ukitq6n0.apps.googleusercontent.com">
       <ThemeProvider theme={darkTheme}>
         <BrowserRouter>
           <UseState>
@@ -39,6 +40,7 @@ function App() {
                 <TestState>
                   <UseEffectState>
                     <TopNavaigation />
+                    <AppProgress />
                     <Route />
                     {/* <Footer /> */}
                   </UseEffectState>

@@ -29,23 +29,31 @@ import {
   Home,
   Forum,
   BookOnline,
+  Logout,
 } from "@mui/icons-material/";
 import { Link } from "react-router-dom";
 import TestContext from "../../State/Test/TestContext";
 import UseEffect from "../../State/UseEffect/UseEffectContext";
-import userEvent from "@testing-library/user-event";
 import UseContext from "../../State/UseState/UseContext";
+import MaterialContext from "../../State/Material/MaterialContext";
 
 const TopNavaigation = () => {
   const { location } = React.useContext(UseEffect);
 
   const { toggleDrawer, state } = React.useContext(TestContext);
 
+  const { handleLogout } = React.useContext(MaterialContext);
+
   const { user } = React.useContext(UseContext);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handleClose = () => {
+  const handleClose = (string) => {
+    if (string) {
+      handleLogout();
+    }
+
+    console.log(string);
     setAnchorEl(null);
   };
   const handleClick = (event) => {
@@ -198,7 +206,7 @@ const TopNavaigation = () => {
               <Badge badgeContent={17} color="error">
                 {user.avatar !== null ? (
                   <Avatar
-                    imgProps={"lazy"}
+                    imgProps={{ loading: "lazy" }}
                     src={user.avatar}
                     alt={user.name}
                     sx={{ width: 40, height: 40 }}
@@ -226,9 +234,9 @@ const TopNavaigation = () => {
               <Link to={"/profile"}>
                 <MenuItem onClick={handleClose}>
                   <ListItemIcon>
-                    {console.log(user.avatar)}
                     {user.avatar !== null ? (
                       <Avatar
+                        imgProps={{ loading: "lazy" }}
                         src={user.avatar}
                         sx={{ width: 24, height: 24 }}
                       />
@@ -259,6 +267,12 @@ const TopNavaigation = () => {
                   chat
                 </MenuItem>
               </Link>
+              <MenuItem onClick={() => handleClose("logout")}>
+                <ListItemIcon>
+                  <Logout />
+                </ListItemIcon>
+                Logout
+              </MenuItem>
             </Menu>
           </div>
         </Toolbar>

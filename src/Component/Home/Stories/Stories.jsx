@@ -5,7 +5,7 @@ import React from "react";
 const Stories = () => {
   return (
     <>
-      <Paper elevation={4} sx={{ margin: 2, padding: 2, display: "flex" }}>
+      <Paper sx={{ margin: 2, padding: 2, display: "flex" }}>
         <Stack>
           <Avatar
             alt="Nb"

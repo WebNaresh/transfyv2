@@ -13,6 +13,8 @@ export const UseState = (props) => {
 
   const [pdf, setPdf] = useState(false);
 
+  const [appLoading, setAppLoading] = useState(false);
+
   const [collegeMaterialForm, setCollegeMaterialForm] = useState({
     Department: null,
     Name: null,
@@ -73,7 +75,6 @@ export const UseState = (props) => {
     status: null,
     avatar: null,
   });
-  console.log(user);
 
   const [currentUser, setCurrentUser] = useState({
     name: "omkar",
@@ -130,6 +131,8 @@ export const UseState = (props) => {
         removeCookie,
         friends,
         setFriends,
+        appLoading,
+        setAppLoading,
       }}
     >
       {props.children}
