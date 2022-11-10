@@ -4,18 +4,30 @@ import UseContext from "../UseState/UseContext";
 import MaterialContext from "./MaterialContext";
 import jwt_decode from "jwt-decode";
 import ApiContext from "../ApiHandler/ApiContext";
+import TestContext from "../Test/TestContext";
+import ChatzContext from "../Chatz/ChatzContext";
 
 export const MaterialState = (props) => {
   const {
     collegeMaterialForm,
     setCollegeMaterialForm,
-    setAppLoading,
-    appLoading,
-    setUser,
-
     cookies,
     removeCookie,
+    socket,
+    currentUser,
+    user,
+    messages,
+    friends,
+    lenghtOfArray,
   } = useContext(UseContext);
+  const {
+    handleAlert,
+    handleLoader,
+    makeItNull,
+    concatTheUser,
+    addRecentMessageArray,
+    addMessageArray,
+  } = useContext(TestContext);
   const { apiRequest } = useContext(ApiContext);
 
   const handleSemesterAutoComplete = (event, newValue) => {
@@ -63,44 +75,52 @@ export const MaterialState = (props) => {
     }
   };
 
-  const sendMessageControl = (e, n) => {
-    // if (messages[messages.length - 1].userId === user.id) {
-    //   messages[messages.length - 1].userMessage.push(chatInput);
-    //   setMessages([...messages]);
-    // } else if (messages[messages.length - 1].userId === currentUser.id) {
-    //   messages[messages.length - 1].userMessage.push(chatInput);
-    //   setMessages([...messages]);
-    // } else {
-    //   setMessages([
-    //     ...messages,
-    //     { userId: currentUser.id, userMessage: [chatInput] },
-    //   ]);
-    // }
+  const sendMessageControl = async (msg) => {
+    socket.emit("send-msg", { from: user._id, msg, to: currentUser._id });
+    if (lenghtOfArray === 0) {
+      addMessageArray({ from: user._id, msg, to: currentUser._id });
+    } else if (messages[lenghtOfArray - 1].userId === user._id) {
+      // await messages[lenghtOfArray - 1].userMessage.push(msg);
+      // const newUsers = [...messages];
+      // await setMessages(newUsers);
+      addRecentMessageArray({ from: user._id, msg, to: currentUser._id });
+    } else {
+      addMessageArray({ from: user._id, msg, to: currentUser._id });
+      // await setMessages((oldMessages) => [
+      //   ...oldMessages,
+      //   { userId: user._id, userMessage: [msg] },
+      // ]);
+    }
   };
   const handleFailure = (result) => {
-    console.log(result);
+    handleLoader(true, "red");
+    handleAlert(true, "warning", "connecting with your google account Failed");
   };
   const handleLogin = async (credentialResponse) => {
-    console.log(appLoading);
-    setAppLoading(true);
-    console.log(credentialResponse);
+    handleLoader(true, "inherit");
+
     var { name, email, picture } = jwt_decode(credentialResponse.credential);
 
     if (cookies.token === undefined) {
       await apiRequest(name, email, picture);
     }
-    setTimeout(() => {
-      setAppLoading(false);
-    }, 5000);
-
-    // redirect("/");
   };
 
   const handleLogout = () => {
-    console.log(cookies.token);
+    handleLoader(true, "blue");
+    handleAlert(true, "warning", "logged out successfully");
+
     removeCookie("token");
-    // cookies.token = undefined;
-    setUser({ name: null, email: null, avatar: null, status: null });
+    makeItNull();
+  };
+
+  const getTheUser = async (id) => {
+    let getUser = friends.filter((ele) => {
+      return ele._id === id;
+    });
+    if (getUser[0] !== undefined) {
+      concatTheUser(getUser[0]);
+    }
   };
 
   return (
@@ -111,6 +131,7 @@ export const MaterialState = (props) => {
         handleLogin,
         handleFailure,
         handleLogout,
+        getTheUser,
       }}
     >
       {props.children}

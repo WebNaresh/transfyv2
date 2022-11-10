@@ -6,22 +6,22 @@ const Coursel = () => {
     {
       name: "Random Name #1",
       description: "Probably the most random thing you have ever seen!",
-      url: "https://images.unsplash.com/photo-1522661067900-ab829854a57f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      url: "http://ssgmkhandala.org/images/college/img3.jpg",
     },
     {
       name: "Random Name #1",
       description: "Probably the most random thing you have ever seen!",
-      url: "https://images.unsplash.com/photo-1569173675610-42c361a86e37?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=867&q=80",
+      url: "http://ssgmkhandala.org/images/college/img2.jpg",
     },
     {
       name: "Random Name #1",
       description: "Probably the most random thing you have ever seen!",
-      url: "https://images.unsplash.com/flagged/photo-1574098335395-18cf525e45d6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      url: "http://ssgmkhandala.org/images/college/img1.jpg",
     },
     {
       name: "Random Name #2",
       description: "Hello World!",
-      url: "https://images.unsplash.com/photo-1569098272587-7af816a8293c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      url: "http://ssgmkhandala.org/images/college/img4.jpg",
     },
   ];
   function Item(props) {

@@ -11,11 +11,14 @@ import MaterialState from "./State/Material/MaterialState";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import ApiState from "./State/ApiHandler/ApiState";
 import AppProgress from "./Component/Backdrop/Backdrop";
+import ChatzState from "./State/Chatz/ChatzState";
+import AppAlert from "./utils/Alert/Alert";
+import SocketState from "./State/SocketHandler/SocketState";
 
 function App() {
   const darkTheme = createTheme({
     palette: {
-      mode: "dark",
+      mode: "light",
     },
   });
   //   {
@@ -35,18 +38,23 @@ function App() {
       <ThemeProvider theme={darkTheme}>
         <BrowserRouter>
           <UseState>
-            <ApiState>
-              <MaterialState>
-                <TestState>
-                  <UseEffectState>
-                    <TopNavaigation />
-                    <AppProgress />
-                    <Route />
-                    {/* <Footer /> */}
-                  </UseEffectState>
-                </TestState>
-              </MaterialState>
-            </ApiState>
+            <TestState>
+              <ApiState>
+                <MaterialState>
+                  <ChatzState>
+                    <SocketState>
+                      <UseEffectState>
+                        <TopNavaigation />
+                        <AppProgress />
+                        <AppAlert />
+                        <Route />
+                        {/* <Footer /> */}
+                      </UseEffectState>
+                    </SocketState>
+                  </ChatzState>
+                </MaterialState>
+              </ApiState>
+            </TestState>
           </UseState>
         </BrowserRouter>
       </ThemeProvider>

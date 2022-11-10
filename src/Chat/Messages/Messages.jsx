@@ -5,30 +5,38 @@ import { useRoundInputBaseStyles } from "@mui-treasury/styles/inputBase/round";
 import { Stack } from "@mui/system";
 import { IconButton, InputAdornment } from "@mui/material";
 import { Link, Send } from "@mui/icons-material";
-import { useRef } from "react";
 import { useEffect } from "react";
 import { useContext } from "react";
 import UseContext from "../../State/UseState/UseContext";
 import MaterialContext from "../../State/Material/MaterialContext";
+import { useParams } from "react-router-dom";
 
 const Messages = () => {
+  const params = useParams();
   const styles = useRoundInputBaseStyles();
   useEffect(() => {
     window.scrollTo(0, document.body.scrollHeight);
+    if (currentUser._id === null) {
+      getTheUser(params.id);
+    }
   }, []);
-  const { messages, setMessages, user, chatInput, setChatInput } =
+  const { messages, currentUser, user, chatInput, setChatInput } =
     useContext(UseContext);
-  const { sendMessageControl } = useContext(MaterialContext);
+  const { sendMessageControl, getTheUser } = useContext(MaterialContext);
 
   return (
     <Stack margin={2} my={10}>
       {messages.map(({ userId, userMessage }, i2) => {
         return (
           <div key={i2}>
-            {userId === user.id ? (
-              <ChatMsg avatar={"N"} side={"right"} messages={userMessage} />
+            {userId === user._id ? (
+              <ChatMsg
+                avatar={user.avatar}
+                side={"right"}
+                messages={userMessage}
+              />
             ) : (
-              <ChatMsg avatar={"N"} messages={userMessage} />
+              <ChatMsg avatar={currentUser.avatar} messages={userMessage} />
             )}
           </div>
         );
@@ -65,7 +73,7 @@ const Messages = () => {
           endAdornment={
             <InputAdornment position="end">
               <IconButton
-                onClick={sendMessageControl}
+                onClick={() => sendMessageControl(chatInput)}
                 color={"primary"}
                 size="large"
               >

@@ -8,8 +8,12 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { Badge, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { useContext } from "react";
+import ChatzContext from "../../State/Chatz/ChatzContext";
 
-export function Chatz() {
+export function Chatz({ user }) {
+  const { handleChatzOnclick } = useContext(ChatzContext);
+
   const StyledBadge = styled(Badge)(({ theme }) => ({
     "& .MuiBadge-badge": {
       backgroundColor: "#44b700",
@@ -40,18 +44,28 @@ export function Chatz() {
   }));
   return (
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
-      <ListItem sx={{ width: "100%" }} alignItems="flex-start">
+      <ListItem
+        onClick={() => handleChatzOnclick(user)}
+        sx={{ width: "100%" }}
+        alignItems="flex-start"
+      >
         <ListItemAvatar>
           <StyledBadge
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             variant="dot"
           >
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar alt={user.name} src={user.avatar} />
           </StyledBadge>
         </ListItemAvatar>
         <ListItemText
-          primary="Brunch this weekend?"
+          disableTypography
+          primary={
+            <Typography type="body2" style={{ color: "#FFFFFF" }}>
+              {user.name}
+            </Typography>
+          }
+          children={"span"}
           secondary={
             <Stack>
               <Badge
@@ -68,7 +82,7 @@ export function Chatz() {
                   variant="body1"
                   color="text.primary"
                 >
-                  Ali Connors — I'll be in your neighborhood doing errands this…
+                  Say Hello to {user.email}
                 </Typography>
               </Badge>
             </Stack>

@@ -1,4 +1,4 @@
-import { Stack } from "@mui/system";
+import { Paper, Stack } from "@mui/material";
 import React from "react";
 import Card from "../Card/Card";
 import Stories from "./Stories/Stories";
@@ -7,9 +7,9 @@ const Home = () => {
   return (
     <>
       <Stack mt={7}>
-        <Stack sx={{ overflowY: "auto" }}>
+        <Paper sx={{ overflowY: "auto" }}>
           <Stories />
-        </Stack>
+        </Paper>
         <Card index={1} />
 
         <Card index={2} />

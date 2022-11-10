@@ -30,6 +30,8 @@ import {
   Forum,
   BookOnline,
   Logout,
+  NotificationAdd,
+  LoginOutlined,
 } from "@mui/icons-material/";
 import { Link } from "react-router-dom";
 import TestContext from "../../State/Test/TestContext";
@@ -44,17 +46,21 @@ const TopNavaigation = () => {
 
   const { handleLogout } = React.useContext(MaterialContext);
 
-  const { user } = React.useContext(UseContext);
+  const { user, setAppLoading } = React.useContext(UseContext);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClose = (string) => {
-    if (string) {
+    setAppLoading({ load: true, color: "blue" });
+
+    setAnchorEl(null);
+    if (string === "logout") {
       handleLogout();
     }
 
-    console.log(string);
-    setAnchorEl(null);
+    setTimeout(() => {
+      setAppLoading({ load: false, color: "red" });
+    }, 1000);
   };
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -127,35 +133,6 @@ const TopNavaigation = () => {
       </List>
       <Divider />
       <List>
-        {location.pathname !== "/login" ? (
-          <ListItem onClick={toggleDrawer(false)}>
-            <Link to={"/login"}>
-              <ListItemButton onClick={toggleDrawer(false)}>
-                <ListItemIcon>
-                  {" "}
-                  <Login />
-                </ListItemIcon>
-                <ListItemText primary={"Login"} />
-              </ListItemButton>
-            </Link>
-          </ListItem>
-        ) : (
-          ""
-        )}
-        {location.pathname !== "/studentLogin" ? (
-          <ListItem onClick={toggleDrawer(false)}>
-            <Link to={"/studentLogin"}>
-              <ListItemButton onClick={toggleDrawer(false)}>
-                <ListItemIcon>
-                  <School />
-                </ListItemIcon>
-                <ListItemText primary={"Login as Student"} />
-              </ListItemButton>
-            </Link>
-          </ListItem>
-        ) : (
-          ""
-        )}
         {location.pathname !== "/collegeMaterials" ? (
           <ListItem onClick={toggleDrawer(false)}>
             <Link to={"/collegeMaterials"}>
@@ -192,7 +169,7 @@ const TopNavaigation = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Transfy{" "}
+            Sushila Shakarao Mahavidyalaya{" "}
           </Typography>
           <div>
             <IconButton
@@ -204,7 +181,7 @@ const TopNavaigation = () => {
               onClick={handleClick}
             >
               <Badge badgeContent={17} color="error">
-                {user.avatar !== null ? (
+                {user.status !== null ? (
                   <Avatar
                     imgProps={{ loading: "lazy" }}
                     src={user.avatar}
@@ -267,12 +244,23 @@ const TopNavaigation = () => {
                   chat
                 </MenuItem>
               </Link>
-              <MenuItem onClick={() => handleClose("logout")}>
-                <ListItemIcon>
-                  <Logout />
-                </ListItemIcon>
-                Logout
-              </MenuItem>
+              {user.name === null ? (
+                <Link to={"/login"}>
+                  <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                      <LoginOutlined />
+                    </ListItemIcon>
+                    Login
+                  </MenuItem>
+                </Link>
+              ) : (
+                <MenuItem onClick={() => handleClose("logout")}>
+                  <ListItemIcon>
+                    <LoginOutlined />
+                  </ListItemIcon>
+                  Logout
+                </MenuItem>
+              )}
             </Menu>
           </div>
         </Toolbar>

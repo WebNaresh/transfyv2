@@ -21,7 +21,7 @@ export default function About() {
         >
           Welcome to Sushila Shakarao Mahavidyalaya
         </Typography>
-        <Paper>
+        <Paper sx={{ padding: 2 }}>
           <Typography
             mx={2}
             variant="subtitle-2"
@@ -59,6 +59,11 @@ export default function About() {
         </Paper>
         <Divider sx={{ margin: 2 }} />
         <Stack>
+          {/* <CollegeHistory/> */}
+          {/* <SchollExperience/> */}
+          {/* <PrincipalImage/> */}
+          {/* <AwardNAchievement/> */}
+          {/* <SchoolUniform/> */}
           <Typography
             variant="h4"
             color={"primary.main"}

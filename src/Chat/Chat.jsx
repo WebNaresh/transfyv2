@@ -1,11 +1,14 @@
 import React from "react";
-import { Paper, Stack, InputBase } from "@mui/material/";
+import { Paper, Stack, InputBase } from "@mui/material";
 import { useRoundInputBaseStyles } from "@mui-treasury/styles/inputBase/round";
 import { Chatz } from "./Chatz/Chatz";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import UseContext from "../State/UseState/UseContext";
 
 const Chat = () => {
   const styles = useRoundInputBaseStyles();
+  const { friends } = useContext(UseContext);
   return (
     <div>
       <Paper
@@ -30,24 +33,24 @@ const Chat = () => {
               color: "ActiveBorder !important",
               backgroundColor: "GrayText !important",
               border: "white !important",
-              // borderColor: "GrayText",
-              // ":active": {
-              //   borderColor: "GrayText !important ",
-              // },
             }}
             placeholder={"Search ..."}
           />
         </Stack>
-        <Paper elevation={8} variant={"elevation"} sx={{ width: "100%" }}>
-          <Link to={"/chat/messages"}>
-            <Chatz />
-          </Link>
-          <Link to={"/chat/messages"}>
-            <Chatz />
-          </Link>
-          <Link to={"/chat/messages"}>
-            <Chatz />
-          </Link>
+        <Paper
+          elevation={0}
+          variant={"elevation"}
+          sx={{ width: "100%", borderRadius: 1 }}
+        >
+          {friends.map((friend, key) => {
+            return (
+              <div key={key}>
+                <Link to={`/chat/messages/${friend._id}`}>
+                  <Chatz user={friend} />
+                </Link>
+              </div>
+            );
+          })}
         </Paper>
       </Paper>
     </div>

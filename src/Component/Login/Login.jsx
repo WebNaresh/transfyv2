@@ -30,7 +30,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography component={"div"}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -61,6 +61,16 @@ export default function FullWidthTabs() {
 
   const handleChangeIndex = (index) => {
     setValue(index);
+  };
+  const [animals, setAnimals] = React.useState([
+    { type: ["Lion"] },
+    { type: ["Rabbit"] },
+    { type: ["Wolf"] },
+  ]);
+  console.log(animals);
+  const handleArray = () => {
+    animals[animals.length - 1].type.push("naresh");
+    setAnimals([...animals]);
   };
 
   return (
@@ -129,7 +139,9 @@ export default function FullWidthTabs() {
                 </Stack>
               </Stack>
               <Stack my={2}>
-                <Button variant="contained">Login</Button>
+                <Button onClick={handleArray} variant="contained">
+                  Login
+                </Button>
               </Stack>
             </Paper>
           </TabPanel>

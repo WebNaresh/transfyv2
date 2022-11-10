@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import UseContext from "./UseContext";
 import { useCookies } from "react-cookie";
+import { useEffect } from "react";
 export const UseState = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
 
@@ -11,9 +12,20 @@ export const UseState = (props) => {
 
   const [window1, setWindow1] = useState(window);
 
+  const [socket, setSocket] = useState();
+
   const [pdf, setPdf] = useState(false);
 
-  const [appLoading, setAppLoading] = useState(false);
+  const [appAlert, setAppAlert] = useState({
+    alert: false,
+    type: "success",
+    msg: "this is success alert",
+  });
+
+  const [appLoading, setAppLoading] = useState({
+    load: false,
+    color: "#fff",
+  });
 
   const [collegeMaterialForm, setCollegeMaterialForm] = useState({
     Department: null,
@@ -69,40 +81,40 @@ export const UseState = (props) => {
   const redirect = useNavigate();
 
   const [user, setUser] = useState({
-    name: "naresh",
+    name: null,
     email: null,
-    id: null,
+    _id: null,
     status: null,
     avatar: null,
   });
 
   const [currentUser, setCurrentUser] = useState({
-    name: "omkar",
+    name: null,
     email: null,
-    id: null,
+    _id: null,
     status: null,
     avatar: null,
   });
-
   const [messages, setMessages] = useState([
-    {
-      userId: 2,
-      userMessage: [
-        "Hi Jenny, How r u today?",
-        "Did you train yesterday",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat lacus laoreet non curabitur gravida.",
-      ],
-    },
-    {
-      userId: 1,
-      userMessage: [
-        "iam naresh",
-        "Hi Jenny, How r u today?",
-        "Did you train yesterday",
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat lacus laoreet non curabitur gravida.",
-      ],
-    },
+    // {
+    //   userId: "63646ad41ec81a7b975986cf",
+    //   userMessage: [
+    //     "Hi Jenny, How r u today?",
+    //     "Did you train yesterday",
+    //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat lacus laoreet non curabitur gravida.",
+    //   ],
+    // },
+    // {
+    //   userId: "63646abd1ec81a7b975986c7",
+    //   userMessage: [
+    //     "iam naresh",
+    //     "Hi Jenny, How r u today?",
+    //     "Did you train yesterday",
+    //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat lacus laoreet non curabitur gravida.",
+    //   ],
+    // },
   ]);
+  const [lenghtOfArray, setLenghtOfArray] = useState(messages.length);
 
   return (
     <UseContext.Provider
@@ -113,6 +125,7 @@ export const UseState = (props) => {
         setPdf,
         aboutInfo,
         setAboutInfo,
+        setLenghtOfArray,
         material,
         setMaterial,
         collegeMaterialForm,
@@ -133,6 +146,11 @@ export const UseState = (props) => {
         setFriends,
         appLoading,
         setAppLoading,
+        appAlert,
+        setAppAlert,
+        socket,
+        setSocket,
+        lenghtOfArray,
       }}
     >
       {props.children}

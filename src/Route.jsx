@@ -15,7 +15,7 @@ const App = () => {
       <Route exact path="/collegeMaterials" element={<CollegeM />} />
       <Route exact path="/teacher" element={<Login />} />
       <Route exact path="/chat" element={<Chat />} />
-      <Route exact path="/chat/messages" element={<Messages />} />
+      <Route exact path="/chat/messages/:id" element={<Messages />} />
     </Routes>
   );
 };
