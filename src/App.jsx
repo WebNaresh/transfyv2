@@ -14,6 +14,7 @@ import AppProgress from "./Component/Backdrop/Backdrop";
 import ChatzState from "./State/Chatz/ChatzState";
 import AppAlert from "./utils/Alert/Alert";
 import SocketState from "./State/SocketHandler/SocketState";
+import TopLoadingBar from "./utils/TopLoadingBar/TopLoadingBar";
 
 function App() {
   const darkTheme = createTheme({
@@ -21,6 +22,7 @@ function App() {
       mode: "light",
     },
   });
+
   //   {
   // // extra-small
   // xs: 0,
@@ -44,6 +46,7 @@ function App() {
                   <ChatzState>
                     <SocketState>
                       <UseEffectState>
+                        <TopLoadingBar />
                         <TopNavaigation />
                         <AppProgress />
                         <AppAlert />

@@ -55,7 +55,11 @@ export function Chatz({ user }) {
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             variant="dot"
           >
-            <Avatar alt={user.name} src={user.avatar} />
+            <Avatar
+              imgProps={{ loading: "lazy" }}
+              alt={user.name}
+              src={user.avatar}
+            />
           </StyledBadge>
         </ListItemAvatar>
         <ListItemText

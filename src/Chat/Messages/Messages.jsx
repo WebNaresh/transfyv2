@@ -19,6 +19,7 @@ const Messages = () => {
     if (currentUser._id === null) {
       getTheUser(params.id);
     }
+    // eslint-disable-next-line
   }, []);
   const { messages, currentUser, user, chatInput, setChatInput } =
     useContext(UseContext);

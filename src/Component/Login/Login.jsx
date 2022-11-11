@@ -62,15 +62,9 @@ export default function FullWidthTabs() {
   const handleChangeIndex = (index) => {
     setValue(index);
   };
-  const [animals, setAnimals] = React.useState([
-    { type: ["Lion"] },
-    { type: ["Rabbit"] },
-    { type: ["Wolf"] },
-  ]);
-  console.log(animals);
+
   const handleArray = () => {
-    animals[animals.length - 1].type.push("naresh");
-    setAnimals([...animals]);
+    console.log("GoogleLogin1");
   };
 
   return (

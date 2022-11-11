@@ -29,8 +29,6 @@ import {
   Home,
   Forum,
   BookOnline,
-  Logout,
-  NotificationAdd,
   LoginOutlined,
 } from "@mui/icons-material/";
 import { Link } from "react-router-dom";
@@ -51,11 +49,10 @@ const TopNavaigation = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClose = (string) => {
-    setAppLoading({ load: true, color: "blue" });
-
     setAnchorEl(null);
     if (string === "logout") {
       handleLogout();
+      setAppLoading({ load: true, color: "blue" });
     }
 
     setTimeout(() => {

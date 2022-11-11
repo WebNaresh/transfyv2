@@ -16,6 +16,8 @@ export const UseState = (props) => {
 
   const [pdf, setPdf] = useState(false);
 
+  const [progress, setProgress] = useState(0);
+
   const [appAlert, setAppAlert] = useState({
     alert: false,
     type: "success",
@@ -95,26 +97,14 @@ export const UseState = (props) => {
     status: null,
     avatar: null,
   });
-  const [messages, setMessages] = useState([
-    // {
-    //   userId: "63646ad41ec81a7b975986cf",
-    //   userMessage: [
-    //     "Hi Jenny, How r u today?",
-    //     "Did you train yesterday",
-    //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat lacus laoreet non curabitur gravida.",
-    //   ],
-    // },
-    // {
-    //   userId: "63646abd1ec81a7b975986c7",
-    //   userMessage: [
-    //     "iam naresh",
-    //     "Hi Jenny, How r u today?",
-    //     "Did you train yesterday",
-    //     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat lacus laoreet non curabitur gravida.",
-    //   ],
-    // },
-  ]);
+  const [messages, setMessages] = useState([]);
+  console.log(messages);
   const [lenghtOfArray, setLenghtOfArray] = useState(messages.length);
+  useEffect(() => {
+    setLenghtOfArray(messages.length);
+    console.log(lenghtOfArray);
+    // eslint-disable-next-line
+  }, [messages.length]);
 
   return (
     <UseContext.Provider
@@ -151,6 +141,8 @@ export const UseState = (props) => {
         socket,
         setSocket,
         lenghtOfArray,
+        progress,
+        setProgress,
       }}
     >
       {props.children}

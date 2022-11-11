@@ -9,8 +9,16 @@ import TestContext from "../Test/TestContext";
 
 export const UseEffectState = (props) => {
   const redirect = useNavigate();
-  const { cookies, setUser, setSocket, user, socket, messages, lenghtOfArray } =
-    useContext(UseContext);
+  const {
+    cookies,
+    setUser,
+    setSocket,
+    user,
+    socket,
+    messages,
+    lenghtOfArray,
+    setProgress,
+  } = useContext(UseContext);
 
   const { apiFriendsRequest } = useContext(ApiContext);
   const { addMessageArray, addRecentMessageArray } = useContext(TestContext);
@@ -28,7 +36,7 @@ export const UseEffectState = (props) => {
       });
       apiFriendsRequest(user._id);
     } else {
-      redirect("/login");
+      redirect("/");
     }
 
     // eslint-disable-next-line
@@ -43,22 +51,19 @@ export const UseEffectState = (props) => {
         }
       });
       socket.on("msg-recieve", (data) => {
-        console.log(`🚀 ~ msg-recieve`, data);
-        if (lenghtOfArray === 0) {
-          console.log(`🚀 ~ lenghtOfArray === 0`, lenghtOfArray === 0);
-          addMessageArray(data);
-        } else if (data.from === messages[lenghtOfArray - 1].userId) {
-          console.log(`🚀 ~ (data.from === messages[lenghtOfArray - 1].userId`);
-          addRecentMessageArray(data);
-        } else {
-          addMessageArray(data);
-          console.log(`🚀 ~ else`);
-        }
+        addMessageArray(data);
       });
     }
 
     // eslint-disable-next-line
   }, [user._id]);
+  useEffect(() => {
+    setProgress(10);
+    setTimeout(() => {
+      setProgress(100);
+    }, 1000);
+    // eslint-disable-next-line
+  }, [location.key]);
 
   return (
     <UseEffectContext.Provider value={{ location }}>

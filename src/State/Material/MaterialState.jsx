@@ -77,20 +77,7 @@ export const MaterialState = (props) => {
 
   const sendMessageControl = async (msg) => {
     socket.emit("send-msg", { from: user._id, msg, to: currentUser._id });
-    if (lenghtOfArray === 0) {
-      addMessageArray({ from: user._id, msg, to: currentUser._id });
-    } else if (messages[lenghtOfArray - 1].userId === user._id) {
-      // await messages[lenghtOfArray - 1].userMessage.push(msg);
-      // const newUsers = [...messages];
-      // await setMessages(newUsers);
-      addRecentMessageArray({ from: user._id, msg, to: currentUser._id });
-    } else {
-      addMessageArray({ from: user._id, msg, to: currentUser._id });
-      // await setMessages((oldMessages) => [
-      //   ...oldMessages,
-      //   { userId: user._id, userMessage: [msg] },
-      // ]);
-    }
+    addMessageArray({ from: user._id, msg, to: currentUser._id });
   };
   const handleFailure = (result) => {
     handleLoader(true, "red");

@@ -57,8 +57,8 @@ export const TestState = (props) => {
     setFriends([]);
   };
 
-  const concatTheUser = async (object) => {
-    await setCurrentUser({
+  const concatTheUser = (object) => {
+    setCurrentUser({
       name: object.name,
       email: object.email,
       avatar: object.avatar,
@@ -66,19 +66,18 @@ export const TestState = (props) => {
       _id: object._id,
     });
   };
-  const addMessageArray = async (data) => {
+  const addMessageArray = (data) => {
     console.log(data);
-    console.log(messages.length);
-    await setMessages([
-      ...messages,
+    setMessages((oldData) => [
+      ...oldData,
       { userId: data.from, userMessage: [data.msg] },
     ]);
   };
-  const addRecentMessageArray = async (data) => {
+  const addRecentMessageArray = (data) => {
     console.log(messages.length);
 
-    await messages[messages.length - 1].userMessage.push(data.msg);
-    await setMessages([...messages]);
+    messages[messages.length - 1].userMessage.push(data.msg);
+    setMessages([...messages]);
   };
   return (
     <TestContext.Provider

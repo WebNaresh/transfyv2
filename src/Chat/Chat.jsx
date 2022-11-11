@@ -5,10 +5,21 @@ import { Chatz } from "./Chatz/Chatz";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import UseContext from "../State/UseState/UseContext";
+import TestContext from "../State/Test/TestContext";
+import { useEffect } from "react";
 
 const Chat = () => {
   const styles = useRoundInputBaseStyles();
-  const { friends } = useContext(UseContext);
+  const { friends, user, redirect } = useContext(UseContext);
+  const { handleAlert } = useContext(TestContext);
+  useEffect(() => {
+    if (user.name === null) {
+      handleAlert(true, "warning", "Please Login To Access this route");
+      redirect("/login");
+    }
+    // eslint-disable-next-line
+  }, []);
+
   return (
     <div>
       <Paper
@@ -30,9 +41,9 @@ const Chat = () => {
             sx={{
               paddingX: "1rem !important",
               paddingY: "0.5rem !important",
-              color: "ActiveBorder !important",
-              backgroundColor: "GrayText !important",
-              border: "white !important",
+              // color: "ActiveBorder !important",
+              // backgroundColor: "GrayText !important",
+              // border: "white !important",
             }}
             placeholder={"Search ..."}
           />
