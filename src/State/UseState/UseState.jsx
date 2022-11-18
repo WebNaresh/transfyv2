@@ -102,7 +102,6 @@ export const UseState = (props) => {
   const [lenghtOfArray, setLenghtOfArray] = useState(messages.length);
   useEffect(() => {
     setLenghtOfArray(messages.length);
-    console.log(lenghtOfArray);
     // eslint-disable-next-line
   }, [messages.length]);
 

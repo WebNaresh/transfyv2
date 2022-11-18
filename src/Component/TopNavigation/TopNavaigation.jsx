@@ -22,9 +22,7 @@ import {
   Notifications,
   CachedOutlined,
   Menu as MenuIcon,
-  School,
   FestivalOutlined,
-  Login,
   Info,
   Home,
   Forum,
@@ -166,7 +164,10 @@ const TopNavaigation = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Sushila Shakarao Mahavidyalaya{" "}
+            {console.log(window.innerWidth >= 500)}
+            {window.innerWidth >= 500
+              ? "Sushila Shakarao Mahavidyalaya"
+              : "SSGM"}
           </Typography>
           <div>
             <IconButton
@@ -178,7 +179,7 @@ const TopNavaigation = () => {
               onClick={handleClick}
             >
               <Badge badgeContent={17} color="error">
-                {user.status !== null ? (
+                {user.name !== null ? (
                   <Avatar
                     imgProps={{ loading: "lazy" }}
                     src={user.avatar}

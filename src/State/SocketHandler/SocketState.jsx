@@ -4,7 +4,7 @@ import UseContext from "../UseState/UseContext";
 import SocketContext from "./SocketContext";
 
 export const SocketState = (props) => {
-  const { socket, user } = useContext(UseContext);
+  const { socket } = useContext(UseContext);
 
   return (
     <SocketContext.Provider value={{ socket }}>

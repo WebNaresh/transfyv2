@@ -5,7 +5,7 @@ import MaterialContext from "./MaterialContext";
 import jwt_decode from "jwt-decode";
 import ApiContext from "../ApiHandler/ApiContext";
 import TestContext from "../Test/TestContext";
-import ChatzContext from "../Chatz/ChatzContext";
+import axios from "axios";
 
 export const MaterialState = (props) => {
   const {
@@ -16,16 +16,13 @@ export const MaterialState = (props) => {
     socket,
     currentUser,
     user,
-    messages,
     friends,
-    lenghtOfArray,
   } = useContext(UseContext);
   const {
     handleAlert,
     handleLoader,
     makeItNull,
     concatTheUser,
-    addRecentMessageArray,
     addMessageArray,
   } = useContext(TestContext);
   const { apiRequest } = useContext(ApiContext);
@@ -78,6 +75,21 @@ export const MaterialState = (props) => {
   const sendMessageControl = async (msg) => {
     socket.emit("send-msg", { from: user._id, msg, to: currentUser._id });
     addMessageArray({ from: user._id, msg, to: currentUser._id });
+    window.scrollTo(0, document.body.scrollHeight);
+    const data = {
+      userId: user._id,
+      to: currentUser._id,
+      msg: msg,
+    };
+    const config = { headers: { "Content-Type": "application/json" } };
+    axios
+      .post(process.env.REACT_APP_SendMessage, data, config)
+      .catch((errors) => {
+        console.log(errors);
+      })
+      .then((response) => {
+        console.log(response);
+      });
   };
   const handleFailure = (result) => {
     handleLoader(true, "red");

@@ -1,4 +1,4 @@
-import { Avatar, Paper, Typography } from "@mui/material";
+import { Avatar, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
 

@@ -15,13 +15,13 @@ export const UseEffectState = (props) => {
     setSocket,
     user,
     socket,
-    messages,
-    lenghtOfArray,
     setProgress,
+    friends,
+    setFriends,
   } = useContext(UseContext);
 
   const { apiFriendsRequest } = useContext(ApiContext);
-  const { addMessageArray, addRecentMessageArray } = useContext(TestContext);
+  const { addMessageArray } = useContext(TestContext);
   const location = useLocation();
   useEffect(() => {
     if (cookies.token !== undefined) {
@@ -42,19 +42,23 @@ export const UseEffectState = (props) => {
     // eslint-disable-next-line
   }, []);
   useEffect(() => {
-    setSocket(io("http://localhost:4000"));
+    setSocket(io(process.env.REACT_APP_BACKEND_STRING_OFFICIAL));
     if (socket !== undefined) {
       socket.emit("add", user._id);
       socket.on("userOnline", (userId) => {
         if (userId === user._id) {
           setUser({ ...user, status: true });
+        } else {
+          const sortedAy = friends.find((friend) => friend._id === userId);
+          sortedAy.status = true;
+          setFriends(...friends);
         }
       });
       socket.on("msg-recieve", (data) => {
         addMessageArray(data);
+        window.scrollTo(0, document.body.scrollHeight);
       });
     }
-
     // eslint-disable-next-line
   }, [user._id]);
   useEffect(() => {

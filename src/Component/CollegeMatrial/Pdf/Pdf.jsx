@@ -6,8 +6,8 @@ import { useContext } from "react";
 import UseContext from "../../../State/UseState/UseContext";
 function Pdf() {
   const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
-  const [loading, setLoading] = useState(true);
+  const [setPageNumber] = useState(1);
+  const [setLoading] = useState(true);
   const { window1 } = useContext(UseContext);
 
   function onDocumentLoadSuccess({ numPages }) {

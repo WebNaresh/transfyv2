@@ -12,6 +12,7 @@ import { useContext } from "react";
 import ChatzContext from "../../State/Chatz/ChatzContext";
 
 export function Chatz({ user }) {
+  console.log(user.status);
   const { handleChatzOnclick } = useContext(ChatzContext);
 
   const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -42,6 +43,23 @@ export function Chatz({ user }) {
       },
     },
   }));
+  const StyledBadge2 = styled(Badge)(({ theme }) => ({
+    "& .MuiBadge-badge": {
+      backgroundColor: "#858585",
+      color: "#858585",
+      boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+      "&::after": {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        borderRadius: "50%",
+        border: "1px solid currentColor",
+        content: '""',
+      },
+    },
+  }));
   return (
     <List sx={{ width: "100%", bgcolor: "background.paper" }}>
       <ListItem
@@ -50,17 +68,31 @@ export function Chatz({ user }) {
         alignItems="flex-start"
       >
         <ListItemAvatar>
-          <StyledBadge
-            overlap="circular"
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            variant="dot"
-          >
-            <Avatar
-              imgProps={{ loading: "lazy" }}
-              alt={user.name}
-              src={user.avatar}
-            />
-          </StyledBadge>
+          {user.status === true ? (
+            <StyledBadge
+              overlap="circular"
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              variant="dot"
+            >
+              <Avatar
+                imgProps={{ loading: "lazy" }}
+                alt={user.name}
+                src={user.avatar}
+              />
+            </StyledBadge>
+          ) : (
+            <StyledBadge2
+              overlap="circular"
+              anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+              variant="dot"
+            >
+              <Avatar
+                imgProps={{ loading: "lazy" }}
+                alt={user.name}
+                src={user.avatar}
+              />
+            </StyledBadge2>
+          )}
         </ListItemAvatar>
         <ListItemText
           disableTypography

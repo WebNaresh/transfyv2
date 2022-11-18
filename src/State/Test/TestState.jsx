@@ -67,16 +67,13 @@ export const TestState = (props) => {
     });
   };
   const addMessageArray = (data) => {
-    console.log(data);
     setMessages((oldData) => [
       ...oldData,
-      { userId: data.from, userMessage: [data.msg] },
+      { userId: data.from, msg: [data.msg] },
     ]);
   };
   const addRecentMessageArray = (data) => {
-    console.log(messages.length);
-
-    messages[messages.length - 1].userMessage.push(data.msg);
+    messages[messages.length - 1].msg.push(data.msg);
     setMessages([...messages]);
   };
   return (

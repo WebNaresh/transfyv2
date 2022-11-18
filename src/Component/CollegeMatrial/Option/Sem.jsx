@@ -5,8 +5,7 @@ import UseContext from "../../../State/UseState/UseContext";
 import MaterialContext from "../../../State/Material/MaterialContext";
 
 export default function Dept() {
-  const { material, collegeMaterialForm, setCollegeMaterialForm } =
-    useContext(UseContext);
+  const { material, collegeMaterialForm } = useContext(UseContext);
   const { handleSemesterAutoComplete } = useContext(MaterialContext);
 
   const filter = createFilterOptions();

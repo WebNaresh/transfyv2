@@ -48,7 +48,7 @@ export default function CardComponent() {
   };
   const getTime = () => {
     try {
-      const date = new Date();
+      // const date = new Date();
       // console.log(date.getSeconds());
     } catch (error) {
       console.log(error);
@@ -58,7 +58,7 @@ export default function CardComponent() {
   };
   const getTime2 = () => {
     try {
-      const date = new Date();
+      // const date = new Date();
       // console.log(date.getSeconds());
     } catch (error) {
       console.log(error);
