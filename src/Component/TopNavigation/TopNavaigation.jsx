@@ -164,7 +164,6 @@ const TopNavaigation = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            {console.log(window.innerWidth >= 500)}
             {window.innerWidth >= 500
               ? "Sushila Shakarao Mahavidyalaya"
               : "SSGM"}

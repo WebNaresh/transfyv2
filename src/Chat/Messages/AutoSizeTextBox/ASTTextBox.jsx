@@ -30,6 +30,7 @@ const ASTTextBox = () => {
           padding: 8,
           background: "#606162 !important",
         }}
+        multiline
         value={chatInput}
         onChange={(e) => setChatInput(e.currentTarget.value)}
         startAdornment={

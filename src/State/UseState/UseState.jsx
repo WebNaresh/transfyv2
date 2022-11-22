@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import UseContext from "./UseContext";
 import { useCookies } from "react-cookie";
 import { useEffect } from "react";
+import { useRef } from "react";
 export const UseState = (props) => {
   const [cookies, setCookie, removeCookie] = useCookies(["cookie-name"]);
 
   const [chatInput, setChatInput] = useState("");
+
+  const chatArea = useRef(null);
 
   const [friends, setFriends] = useState([]);
 
@@ -98,12 +101,13 @@ export const UseState = (props) => {
     avatar: null,
   });
   const [messages, setMessages] = useState([]);
-  console.log(messages);
+
   const [lenghtOfArray, setLenghtOfArray] = useState(messages.length);
   useEffect(() => {
     setLenghtOfArray(messages.length);
     // eslint-disable-next-line
   }, [messages.length]);
+  console.log(friends);
 
   return (
     <UseContext.Provider
@@ -142,6 +146,7 @@ export const UseState = (props) => {
         lenghtOfArray,
         progress,
         setProgress,
+        chatArea,
       }}
     >
       {props.children}

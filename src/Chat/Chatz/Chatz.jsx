@@ -12,7 +12,6 @@ import { useContext } from "react";
 import ChatzContext from "../../State/Chatz/ChatzContext";
 
 export function Chatz({ user }) {
-  console.log(user.status);
   const { handleChatzOnclick } = useContext(ChatzContext);
 
   const StyledBadge = styled(Badge)(({ theme }) => ({

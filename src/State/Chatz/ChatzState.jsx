@@ -3,26 +3,15 @@ import { useContext } from "react";
 import TestContext from "../Test/TestContext";
 import UseContext from "../UseState/UseContext";
 import ChatzContext from "./ChatzContext";
-import axios from "axios";
+import ApiContext from "../ApiHandler/ApiContext";
 export const ChatState = (props) => {
   const { handleLoader } = useContext(TestContext);
+  const { getMessagesApiRequest } = useContext(ApiContext);
   const { setCurrentUser, user, setMessages } = useContext(UseContext);
   const handleChatzOnclick = (friend) => {
+    setMessages([]);
     handleLoader(true, "yellow");
-    const data = { userId: [user._id, friend._id] };
-    console.log("onclick");
-
-    const config = { headers: { "Content-Type": "application/json" } };
-    axios
-      .post(process.env.REACT_APP_GetUserMessages, data, config)
-      .catch((errors) => {
-        console.log(errors);
-      })
-      .then((response) => {
-        console.log(response.data.messages);
-        setMessages(response.data.messages);
-      });
-
+    getMessagesApiRequest([user._id, friend._id]);
     setCurrentUser({ ...friend, status: null });
   };
 

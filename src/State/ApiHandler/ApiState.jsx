@@ -9,7 +9,8 @@ import ApiContext from "./ApiContext";
 export const ApiState = (props) => {
   const redirect = useNavigate();
   const { handleLoader, handleAlert } = useContext(TestContext);
-  const { setCookie, user, setUser, setFriends } = useContext(UseContext);
+  const { setCookie, user, setUser, setFriends, setMessages } =
+    useContext(UseContext);
   const apiRequest = (name, email, avatar) => {
     const data = {
       name,
@@ -22,7 +23,7 @@ export const ApiState = (props) => {
       .post(process.env.REACT_APP_BACKEND_STRING, data, config)
       .then((data) => {
         handleAlert(true, "success", "logged in successfully");
-        redirect("/");
+        // redirect("/");
         setUser({
           ...user,
           name: data.data.user.name,
@@ -41,7 +42,7 @@ export const ApiState = (props) => {
       .catch((e) => {
         console.log(e);
         handleLoader(true, "red");
-        redirect("/login");
+        // redirect("/login");
         console.log(e);
         handleAlert(
           true,
@@ -72,9 +73,43 @@ export const ApiState = (props) => {
         );
       });
   };
+  const sendMessageApiRequest = (userId, to, msg) => {
+    // const data = {
+    //   userId,
+    //   to,
+    //   msg,
+    // };
+    // const config = { headers: { "Content-Type": "application/json" } };
+    // axios
+    //   .post(process.env.REACT_APP_SendMessage, data, config)
+    //   .catch((errors) => {
+    //     console.log(errors);
+    //   })
+    //   .then((response) => {
+    //     console.log(response);
+    //   });
+  };
+  const getMessagesApiRequest = (userId) => {
+    const data = { userId };
+
+    const config = { headers: { "Content-Type": "application/json" } };
+    axios
+      .post(process.env.REACT_APP_GetUserMessages, data, config)
+      .catch((errors) => {})
+      .then((response) => {
+        setMessages(response.data.messages);
+      });
+  };
 
   return (
-    <ApiContext.Provider value={{ apiRequest, apiFriendsRequest }}>
+    <ApiContext.Provider
+      value={{
+        apiRequest,
+        apiFriendsRequest,
+        sendMessageApiRequest,
+        getMessagesApiRequest,
+      }}
+    >
       {props.children}
     </ApiContext.Provider>
   );

@@ -17,6 +17,7 @@ export const MaterialState = (props) => {
     currentUser,
     user,
     friends,
+    chatArea,
   } = useContext(UseContext);
   const {
     handleAlert,
@@ -25,7 +26,8 @@ export const MaterialState = (props) => {
     concatTheUser,
     addMessageArray,
   } = useContext(TestContext);
-  const { apiRequest } = useContext(ApiContext);
+  const { apiRequest, sendMessageApiRequest, getMessagesApiRequest } =
+    useContext(ApiContext);
 
   const handleSemesterAutoComplete = (event, newValue) => {
     if (typeof newValue === "string") {
@@ -75,21 +77,8 @@ export const MaterialState = (props) => {
   const sendMessageControl = async (msg) => {
     socket.emit("send-msg", { from: user._id, msg, to: currentUser._id });
     addMessageArray({ from: user._id, msg, to: currentUser._id });
-    window.scrollTo(0, document.body.scrollHeight);
-    const data = {
-      userId: user._id,
-      to: currentUser._id,
-      msg: msg,
-    };
-    const config = { headers: { "Content-Type": "application/json" } };
-    axios
-      .post(process.env.REACT_APP_SendMessage, data, config)
-      .catch((errors) => {
-        console.log(errors);
-      })
-      .then((response) => {
-        console.log(response);
-      });
+    window.scrollTo(0, chatArea.current.clientHeight);
+    sendMessageApiRequest(user._id, currentUser._id, msg);
   };
   const handleFailure = (result) => {
     handleLoader(true, "red");
@@ -117,8 +106,11 @@ export const MaterialState = (props) => {
     let getUser = friends.filter((ele) => {
       return ele._id === id;
     });
+    console.log(friends);
     if (getUser[0] !== undefined) {
+      console.log(`🚀 ~ getUser`, getUser);
       concatTheUser(getUser[0]);
+      getMessagesApiRequest([user._id, getUser[0]._id]);
     }
   };
 
