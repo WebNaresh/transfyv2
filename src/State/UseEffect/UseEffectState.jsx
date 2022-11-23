@@ -49,20 +49,16 @@ export const UseEffectState = (props) => {
     // eslint-disable-next-line
   }, []);
   const filterTeArray = (array, userId) => {
+    console.log(array, userId);
     userId.forEach((element) => {
       if (element === user._id) {
         user.status = true;
       }
       friends.forEach((ele) => {
-        console.log(ele);
-        console.log(ele._id === element);
-        console.log(ele._id, element);
-
         if (element === ele._id) {
           ele.status = true;
         }
       });
-      console.log(friends);
     });
     // freind1.forEach((element) => {
     //   if (element._id === userId) {

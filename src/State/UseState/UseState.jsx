@@ -107,7 +107,6 @@ export const UseState = (props) => {
     setLenghtOfArray(messages.length);
     // eslint-disable-next-line
   }, [messages.length]);
-  console.log(friends);
 
   return (
     <UseContext.Provider
