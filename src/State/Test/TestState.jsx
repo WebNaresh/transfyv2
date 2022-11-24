@@ -11,7 +11,6 @@ export const TestState = (props) => {
     messages,
     setMessages,
     setSearchInput,
-    friends,
     dummyarray,
   } = useContext(UseContext);
 
