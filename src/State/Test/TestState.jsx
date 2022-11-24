@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import ApiContext from "../ApiHandler/ApiContext";
 import UseContext from "../UseState/UseContext";
 import TestContext from "./TestContext";
 export const TestState = (props) => {
@@ -11,6 +10,9 @@ export const TestState = (props) => {
     setCurrentUser,
     messages,
     setMessages,
+    setSearchInput,
+    friends,
+    dummyarray,
   } = useContext(UseContext);
 
   const [state, setState] = React.useState(false);
@@ -77,6 +79,14 @@ export const TestState = (props) => {
     messages[messages.length - 1].msg.push(data.msg);
     setMessages([...messages]);
   };
+  const handleSearch = (value) => {
+    setSearchInput(value.target.value);
+    const newArray = dummyarray.filter((element) => {
+      console.log(element.email.includes(value.target.value));
+      return element.email.includes(value.target.value);
+    });
+    setFriends([...newArray]);
+  };
   return (
     <TestContext.Provider
       value={{
@@ -90,6 +100,7 @@ export const TestState = (props) => {
         concatTheUser,
         addMessageArray,
         addRecentMessageArray,
+        handleSearch,
       }}
     >
       {props.children}

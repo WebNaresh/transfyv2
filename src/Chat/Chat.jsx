@@ -10,8 +10,8 @@ import { useEffect } from "react";
 
 const Chat = () => {
   const styles = useRoundInputBaseStyles();
-  const { friends, user, redirect } = useContext(UseContext);
-  const { handleAlert } = useContext(TestContext);
+  const { friends, user, redirect, searchInput } = useContext(UseContext);
+  const { handleAlert, handleSearch } = useContext(TestContext);
   useEffect(() => {
     if (user.name === null) {
       handleAlert(true, "warning", "Please Login To Access this route");
@@ -45,6 +45,8 @@ const Chat = () => {
               // backgroundColor: "GrayText !important",
               // border: "white !important",
             }}
+            value={searchInput}
+            onChange={handleSearch}
             placeholder={"Search ..."}
           />
         </Stack>

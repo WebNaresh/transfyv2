@@ -108,7 +108,7 @@ export function Chatz({ user }) {
                   vertical: "top",
                   horizontal: "right",
                 }}
-                badgeContent={4}
+                badgeContent={user.notification}
                 color="error"
               >
                 <Typography

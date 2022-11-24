@@ -2,14 +2,12 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 import React from "react";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import TestContext from "../Test/TestContext";
 import UseContext from "../UseState/UseContext";
 import ApiContext from "./ApiContext";
 export const ApiState = (props) => {
-  const redirect = useNavigate();
   const { handleLoader, handleAlert } = useContext(TestContext);
-  const { setCookie, user, setUser, setFriends, setMessages } =
+  const { setCookie, user, setUser, setFriends, setMessages, setDummyarray } =
     useContext(UseContext);
   const apiRequest = (name, email, avatar) => {
     const data = {
@@ -63,6 +61,7 @@ export const ApiState = (props) => {
       .then(({ data }) => {
         handleAlert(true, "info", "Downloading your information");
         setFriends(jwtDecode(data.users).users);
+        setDummyarray(jwtDecode(data.users).users);
       })
       .catch((e) => {
         console.log(e);

@@ -5,7 +5,6 @@ import MaterialContext from "./MaterialContext";
 import jwt_decode from "jwt-decode";
 import ApiContext from "../ApiHandler/ApiContext";
 import TestContext from "../Test/TestContext";
-import axios from "axios";
 
 export const MaterialState = (props) => {
   const {
@@ -18,6 +17,7 @@ export const MaterialState = (props) => {
     user,
     friends,
     chatArea,
+    setChatInput,
   } = useContext(UseContext);
   const {
     handleAlert,
@@ -79,8 +79,9 @@ export const MaterialState = (props) => {
     addMessageArray({ from: user._id, msg, to: currentUser._id });
     window.scrollTo(0, chatArea.current.clientHeight);
     sendMessageApiRequest(user._id, currentUser._id, msg);
+    setChatInput("");
   };
-  const handleFailure = (result) => {
+  const handleFailure = () => {
     handleLoader(true, "red");
     handleAlert(true, "warning", "connecting with your google account Failed");
   };

@@ -13,6 +13,8 @@ export const UseState = (props) => {
 
   const [friends, setFriends] = useState([]);
 
+  const [dummyarray, setDummyarray] = useState([]);
+
   const [window1, setWindow1] = useState(window);
 
   const [socket, setSocket] = useState();
@@ -108,6 +110,8 @@ export const UseState = (props) => {
     // eslint-disable-next-line
   }, [messages.length]);
 
+  const [searchInput, setSearchInput] = useState("");
+
   return (
     <UseContext.Provider
       value={{
@@ -146,6 +150,10 @@ export const UseState = (props) => {
         progress,
         setProgress,
         chatArea,
+        searchInput,
+        setSearchInput,
+        dummyarray,
+        setDummyarray,
       }}
     >
       {props.children}

@@ -7,9 +7,17 @@ import ApiContext from "../ApiHandler/ApiContext";
 export const ChatState = (props) => {
   const { handleLoader } = useContext(TestContext);
   const { getMessagesApiRequest } = useContext(ApiContext);
-  const { setCurrentUser, user, setMessages } = useContext(UseContext);
+  const { setCurrentUser, user, setMessages, friends, setFriends } =
+    useContext(UseContext);
   const handleChatzOnclick = (friend) => {
     setMessages([]);
+    friends.forEach((element) => {
+      if (friend._id === element._id) {
+        element.notification = 0;
+      }
+    });
+    setFriends([...friends]);
+    console.log(friend);
     handleLoader(true, "yellow");
     getMessagesApiRequest([user._id, friend._id]);
     setCurrentUser({ ...friend, status: null });

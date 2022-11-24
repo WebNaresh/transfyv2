@@ -1,15 +1,13 @@
 import React, { useContext, useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import UseContext from "../UseState/UseContext";
 import UseEffectContext from "./UseEffectContext";
 import jwt_decode from "jwt-decode";
 import ApiContext from "../ApiHandler/ApiContext";
 import { io } from "socket.io-client";
 import TestContext from "../Test/TestContext";
-import MaterialContext from "../Material/MaterialContext";
 
 export const UseEffectState = (props) => {
-  const redirect = useNavigate();
   const {
     cookies,
     setUser,
@@ -22,13 +20,10 @@ export const UseEffectState = (props) => {
     currentUser,
     chatArea,
   } = useContext(UseContext);
-  const freind1 = friends;
 
   const { apiFriendsRequest } = useContext(ApiContext);
   const { addMessageArray } = useContext(TestContext);
-  const { getTheUser } = useContext(MaterialContext);
   const location = useLocation();
-  const params = useParams();
 
   useEffect(() => {
     if (cookies.token !== undefined) {
@@ -49,7 +44,6 @@ export const UseEffectState = (props) => {
     // eslint-disable-next-line
   }, []);
   const filterTeArray = (array, userId) => {
-    console.log(array, userId);
     userId.forEach((element) => {
       if (element === user._id) {
         user.status = true;
@@ -60,13 +54,15 @@ export const UseEffectState = (props) => {
         }
       });
     });
-    // freind1.forEach((element) => {
-    //   if (element._id === userId) {
-    //     element.status = true;
-    //   } else {
-    //     element.status = false;
-    //   }
-    // });
+
+    setFriends([...friends]);
+  };
+  const sendNotificationToThatUser = (data) => {
+    friends.forEach((element) => {
+      if (data.from === element._id) {
+        element.notification += 1;
+      }
+    });
     setFriends([...friends]);
   };
   useEffect(() => {
@@ -79,11 +75,12 @@ export const UseEffectState = (props) => {
         }
       });
       socket.on("msg-recieve", (data) => {
-        console.log(currentUser._id);
         if (data.from === currentUser._id) {
           addMessageArray(data);
+          window.scrollTo(0, chatArea.current.clientHeight);
+        } else {
+          sendNotificationToThatUser(data);
         }
-        window.scrollTo(0, chatArea.current.clientHeight);
       });
     }
 
