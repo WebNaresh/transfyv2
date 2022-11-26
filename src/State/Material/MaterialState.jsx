@@ -99,7 +99,6 @@ export const MaterialState = (props) => {
   const handleLogout = () => {
     handleLoader(true, "blue");
     socket.emit("dis", user._id);
-    // socket.close();
     console.log(socket);
 
     removeCookie("token");
