@@ -19,6 +19,10 @@ export const UseEffectState = (props) => {
     setFriends,
     currentUser,
     chatArea,
+    dummyarray,
+    onlineUsersPart1,
+    setOnlineUsersPart1,
+    setChatsNotification,
   } = useContext(UseContext);
 
   const { apiFriendsRequest } = useContext(ApiContext);
@@ -43,38 +47,52 @@ export const UseEffectState = (props) => {
 
     // eslint-disable-next-line
   }, []);
-  const filterTeArray = (array, userId) => {
-    userId.forEach((element) => {
-      if (element === user._id) {
-        user.status = true;
+  const filterTeArray = async (array, userId) => {
+    console.log(`🚀 ~ dummyarray`, dummyarray);
+
+    console.log(`🚀 ~ friends`, friends);
+    friends.forEach((element) => {
+      if (userId.includes(element._id)) {
+        element.status = true;
+      } else {
+        element.status = false;
       }
-      friends.forEach((ele) => {
-        if (element === ele._id) {
-          ele.status = true;
-        }
-      });
     });
 
     setFriends([...friends]);
   };
   const sendNotificationToThatUser = (data) => {
     friends.forEach((element) => {
+      console.log(data.from === element._id);
+
       if (data.from === element._id) {
         element.notification += 1;
       }
     });
     setFriends([...friends]);
   };
+
+  useEffect(() => {
+    filterTeArray(friends, onlineUsersPart1);
+  }, [onlineUsersPart1]);
+  useEffect(() => {
+    let numberNotification = 0;
+    friends.forEach((ele) => {
+      numberNotification = ele.notification + numberNotification;
+    });
+    setChatsNotification(numberNotification);
+  }, [friends]);
+
   useEffect(() => {
     setSocket(io(process.env.REACT_APP_BACKEND_STRING_OFFICIAL));
     if (socket !== undefined) {
       socket.emit("add", user._id);
       socket.on("userOnline", (userId) => {
-        if (friends.length >= 1) {
-          filterTeArray(friends, userId);
-        }
+        setOnlineUsersPart1([...userId]);
       });
       socket.on("msg-recieve", (data) => {
+        console.log(data.from === currentUser._id);
+
         if (data.from === currentUser._id) {
           addMessageArray(data);
           window.scrollTo(0, chatArea.current.clientHeight);

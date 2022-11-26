@@ -41,6 +41,8 @@ export const UseState = (props) => {
     Semester: null,
   });
 
+  const [chatsNotification, setChatsNotification] = useState(0);
+
   const [aboutInfo, setAboutInfo] = useState([
     {
       name: "Dr. S R Bamane",
@@ -104,6 +106,8 @@ export const UseState = (props) => {
   });
   const [messages, setMessages] = useState([]);
 
+  const [onlineUsersPart1, setOnlineUsersPart1] = useState([]);
+
   const [lenghtOfArray, setLenghtOfArray] = useState(messages.length);
   useEffect(() => {
     setLenghtOfArray(messages.length);
@@ -154,6 +158,10 @@ export const UseState = (props) => {
         setSearchInput,
         dummyarray,
         setDummyarray,
+        onlineUsersPart1,
+        setOnlineUsersPart1,
+        chatsNotification,
+        setChatsNotification,
       }}
     >
       {props.children}

@@ -42,7 +42,8 @@ const TopNavaigation = () => {
 
   const { handleLogout } = React.useContext(MaterialContext);
 
-  const { user, setAppLoading } = React.useContext(UseContext);
+  const { user, setAppLoading, chatsNotification } =
+    React.useContext(UseContext);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -177,7 +178,7 @@ const TopNavaigation = () => {
               color="inherit"
               onClick={handleClick}
             >
-              <Badge badgeContent={17} color="error">
+              <Badge badgeContent={chatsNotification} color="error">
                 {user.name !== null ? (
                   <Avatar
                     imgProps={{ loading: "lazy" }}
@@ -234,7 +235,7 @@ const TopNavaigation = () => {
               <Link to={"/chat"}>
                 <MenuItem onClick={handleClose}>
                   <ListItemIcon>
-                    <Badge color="error">
+                    <Badge badgeContent={chatsNotification} color="error">
                       <Forum />
                     </Badge>
                   </ListItemIcon>

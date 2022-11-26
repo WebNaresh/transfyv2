@@ -81,9 +81,10 @@ export const MaterialState = (props) => {
     sendMessageApiRequest(user._id, currentUser._id, msg);
     setChatInput("");
   };
-  const handleFailure = () => {
+  const handleFailure = (error) => {
     handleLoader(true, "red");
     handleAlert(true, "warning", "connecting with your google account Failed");
+    console.log(error);
   };
   const handleLogin = async (credentialResponse) => {
     handleLoader(true, "inherit");
@@ -97,10 +98,13 @@ export const MaterialState = (props) => {
 
   const handleLogout = () => {
     handleLoader(true, "blue");
-    handleAlert(true, "warning", "logged out successfully");
+    socket.emit("dis", user._id);
+    // socket.close();
+    console.log(socket);
 
-    removeCookie("token");
-    makeItNull();
+    // removeCookie("token");
+    // makeItNull();
+    handleAlert(true, "warning", "logged out successfully");
   };
 
   const getTheUser = async (id) => {
