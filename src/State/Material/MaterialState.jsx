@@ -102,8 +102,8 @@ export const MaterialState = (props) => {
     // socket.close();
     console.log(socket);
 
-    // removeCookie("token");
-    // makeItNull();
+    removeCookie("token");
+    makeItNull();
     handleAlert(true, "warning", "logged out successfully");
   };
 
