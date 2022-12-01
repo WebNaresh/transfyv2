@@ -152,7 +152,7 @@ const TopNavaigation = () => {
       <Drawer anchor={"top"} open={state} onClose={toggleDrawer(false)}>
         {list("top")}
       </Drawer>
-      <AppBar position="fixed">
+      <AppBar enableColorOnDark position="fixed">
         <Toolbar>
           <IconButton
             size="large"

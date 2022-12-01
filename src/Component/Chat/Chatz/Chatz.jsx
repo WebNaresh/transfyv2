@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import { Badge, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useContext } from "react";
-import ChatzContext from "../../State/Chatz/ChatzContext";
+import ChatzContext from "../../../State/Chatz/ChatzContext";
 
 export function Chatz({ user }) {
   const { handleChatzOnclick } = useContext(ChatzContext);

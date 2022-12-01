@@ -48,9 +48,6 @@ export const UseEffectState = (props) => {
     // eslint-disable-next-line
   }, []);
   const filterTeArray = async (array, userId) => {
-    console.log(`🚀 ~ dummyarray`, dummyarray);
-
-    console.log(`🚀 ~ friends`, friends);
     friends.forEach((element) => {
       if (userId.includes(element._id)) {
         element.status = true;
@@ -63,8 +60,6 @@ export const UseEffectState = (props) => {
   };
   const sendNotificationToThatUser = (data) => {
     friends.forEach((element) => {
-      console.log(data.from === element._id);
-
       if (data.from === element._id) {
         element.notification += 1;
       }
@@ -91,8 +86,6 @@ export const UseEffectState = (props) => {
         setOnlineUsersPart1([...userId]);
       });
       socket.on("msg-recieve", (data) => {
-        console.log(data.from === currentUser._id);
-
         if (data.from === currentUser._id) {
           addMessageArray(data);
           window.scrollTo(0, chatArea.current.clientHeight);

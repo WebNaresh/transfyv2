@@ -3,8 +3,8 @@ import ChatMsg from "@mui-treasury/components/chatMsg/ChatMsg";
 import { Stack } from "@mui/system";
 import { useEffect } from "react";
 import { useContext } from "react";
-import UseContext from "../../State/UseState/UseContext";
-import MaterialContext from "../../State/Material/MaterialContext";
+import UseContext from "../../../State/UseState/UseContext";
+import MaterialContext from "../../../State/Material/MaterialContext";
 import { useParams } from "react-router-dom";
 import ASTTextBox from "./AutoSizeTextBox/ASTTextBox";
 

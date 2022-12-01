@@ -1,4 +1,3 @@
-import { styled } from "@mui/material/styles";
 import {
   Collapse,
   CardHeader,
@@ -11,79 +10,49 @@ import {
   Card,
   Divider,
 } from "@mui/material/";
+import "./heart.css";
 import { red } from "@mui/material/colors";
 import {
-  FavoriteOutlined,
-  Share,
-  ExpandMore as ExpandMoreIcon,
   MoreVert,
-  AccountCircle,
   Favorite,
-  Send,
+  FavoriteBorder,
+  ShareOutlined,
 } from "@mui/icons-material/";
-import { Input, InputAdornment, Skeleton, Stack, Box } from "@mui/material";
+import { Skeleton, Stack, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useContext, useState, React } from "react";
 import TestContext from "../../State/Test/TestContext";
+import ExpandMore from "./ExpandMore/ExpandMore";
+import ReusableCousel from "../../utils/ReusableCourasel/ReusableCoursel";
+import BlogContext from "../../State/Blog/BlogContext";
 
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+function CardComponent({ ele }) {
+  const { handleLikeButton } = useContext(BlogContext);
+  console.log(ele);
 
-export default function CardComponent() {
-  const [inputVal, setInputVal] = useState("");
   const [fav, setFav] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const { time } = useContext(TestContext);
 
   const handleExpandClick = () => {
+    console.log(!expanded);
     setExpanded(!expanded);
-  };
-  const getTime = () => {
-    try {
-      // const date = new Date();
-      // console.log(date.getSeconds());
-    } catch (error) {
-      console.log(error);
-    }
-
-    // const date3 = date;
-  };
-  const getTime2 = () => {
-    try {
-      // const date = new Date();
-      // console.log(date.getSeconds());
-    } catch (error) {
-      console.log(error);
-    }
-
-    // const date3 = date;
   };
 
   return (
     <Box mx={2} my={2}>
-      <Card
-        onMouseEnter={getTime}
-        onMouseLeave={getTime2}
-        variant="outlined"
-        sx={{ borderRadius: 3 }}
-      >
+      <Card variant="outlined" sx={{ borderRadius: 3 }}>
         <CardHeader
           avatar={
             <Link to={"/about"} style={{ textDecoration: "none" }}>
-              <Avatar
-                sx={{ bgcolor: red[500], cursor: "pointer" }}
-                aria-label="recipe"
-              >
-                R
-              </Avatar>
+              <>
+                <Avatar
+                  sx={{ bgcolor: red[500], cursor: "pointer" }}
+                  aria-label="recipe"
+                  src={ele.BLoggerAvatar}
+                  alt={ele.BloggerName}
+                />
+              </>
             </Link>
           }
           action={
@@ -91,90 +60,89 @@ export default function CardComponent() {
               <MoreVert />
             </IconButton>
           }
-          title="Shrimp and Chorizo Paella"
+          title={ele.BloggerName}
           subheader="September 14, 2016"
         />
-        <Divider />
+
         {time ? (
           <Skeleton variant="rectangular" animation={"wave"} height={500} />
         ) : (
           <CardMedia
             onDoubleClick={() => (fav === true ? setFav(false) : setFav(true))}
-            component="img"
-            loading="lazy"
+            component="div"
             height="500"
-            sx={{ objectFit: "contain", marginY: 2 }}
-            image="https://picsum.photos/400/300"
-            alt="Paella dish"
-          />
+            sx={{
+              width: "100%",
+            }}
+          >
+            <div>
+              <ReusableCousel array={ele.Image} />
+            </div>
+            <Divider />
+          </CardMedia>
         )}
-        <CardContent sx={{ display: "flex " }}>
-          <Typography
-            variant="body1"
-            fontSize={25}
-            component={"div"}
-            color="text.secondary"
-            fontWeight={4}
-          >
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your
-          </Typography>
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-          >
-            <ExpandMoreIcon />
-          </ExpandMore>
-        </CardContent>
-        <CardActions disableSpacing>
-          <Stack direction={"column"} mx={4}>
+
+        <CardActions disableSpacing sx={{ padding: 0 }}>
+          <Stack direction={"column"}>
             <Stack direction={"row"}>
-              {fav === true ? (
-                <IconButton
-                  aria-label="add to favorites"
-                  onClick={() => {
-                    fav === true ? setFav(false) : setFav(true);
-                  }}
-                >
-                  <FavoriteOutlined />
-                </IconButton>
-              ) : (
-                <IconButton
-                  aria-label="add to favorites"
-                  onClick={() => {
-                    fav === true ? setFav(false) : setFav(true);
-                  }}
-                >
-                  <Favorite />
-                </IconButton>
-              )}
+              <section class="like" onClick={handleLikeButton}></section>
               <IconButton aria-label="share">
-                <Share />
+                <ShareOutlined
+                  sx={{
+                    color: "black",
+                  }}
+                />
               </IconButton>
-            </Stack>
-            <Stack my={2} width={"100vh"} direction={"row"}>
-              <Input
-                fullWidth={true}
-                value={inputVal}
-                onChange={(e) => setInputVal(e.currentTarget.value)}
-                placeholder="Comment"
-                startAdornment={
-                  <InputAdornment position="start">
-                    <IconButton>
-                      <AccountCircle />
-                    </IconButton>
-                  </InputAdornment>
-                }
-              />
-              <IconButton>{inputVal.length > 0 ? <Send /> : <></>}</IconButton>
             </Stack>
           </Stack>
         </CardActions>
+        <CardContent
+          sx={{ display: "flex ", flexDirection: "column", padding: 0.5 }}
+        >
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              cursor: "pointer",
+            }}
+            onClick={handleExpandClick}
+          >
+            <Typography
+              variant="body1"
+              fontSize={25}
+              component={"div"}
+              color="text.common"
+              sx={{
+                fontSize: "1.3rem !important",
+                fontWeight: "initial",
+              }}
+            >
+              {ele.PrimaryHeading}
+            </Typography>
+            <ExpandMore
+              expand={expanded}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              {/* <ExpandMoreIcon /> */}
+            </ExpandMore>
+          </div>
+          <div style={{ display: "flex" }}>
+            {ele.hashTags.map((body) => {
+              return (
+                <Link to={`/${body}`}>
+                  <Typography variant="body2" color={"#0095ff"}>
+                    #{body}&nbsp;
+                  </Typography>
+                </Link>
+              );
+            })}
+          </div>
+        </CardContent>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Method:</Typography>
+            <Typography paragraph>{ele.PrimaryHeading}</Typography>
             <Typography paragraph>
               Heat 1/2 cup of the broth in a pot until simmering, add saffron
               and set aside for 10 minutes.
@@ -204,7 +172,25 @@ export default function CardComponent() {
             </Typography>
           </CardContent>
         </Collapse>
+        {/* <Stack my={2} width={"100vh"} direction={"row"}>
+          <Input
+            fullWidth={true}
+            value={inputVal}
+            onChange={(e) => setInputVal(e.currentTarget.value)}
+            placeholder="Comment"
+            startAdornment={
+              <InputAdornment position="start">
+                <IconButton>
+                  <AccountCircle />
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+          <IconButton>{inputVal.length > 0 ? <Send /> : <></>}</IconButton>
+        </Stack> */}
       </Card>
     </Box>
   );
 }
+
+export default CardComponent;

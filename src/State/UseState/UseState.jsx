@@ -41,6 +41,72 @@ export const UseState = (props) => {
     Semester: null,
   });
 
+  const [blogs, setBlogs] = useState([
+    {
+      BloggerName: "NareshBhosale",
+      BloggerFollower: 45,
+      Date: "Date",
+      BLoggerAvatar:
+        "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      PrimaryHeading: "TestBlogPrimary so hello guys",
+      SecondaryHeading: "TestBlogSecondary",
+      LikeCount: 15,
+      Comments: [
+        {
+          commenterName: "goodPic",
+          Id: "",
+          Msg: "",
+          avatar:
+            "https://images.unsplash.com/photo-1505968409348-bd000797c92e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80",
+        },
+      ],
+      Descritption: "hi my name naresh how are you hello from me",
+      Keywords: " it is a search down querries keyword",
+      hashTags: ["hashtag1", "hashtag2"],
+      Image: [
+        {
+          url: "https://images.unsplash.com/photo-1519419166318-4f5c601b8e6c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+          alt: "imagefromMe",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+          alt: "imagefromMe",
+        },
+      ],
+    },
+    {
+      BloggerName: "NareshBhosale",
+      BloggerFollower: 45,
+      Date: "Date",
+      BLoggerAvatar:
+        "https://images.unsplash.com/photo-1497032205916-ac775f0649ae?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+      PrimaryHeading: "TestBlogPrimary",
+      SecondaryHeading: "TestBlogSecondary",
+      LikeCount: 15,
+      Comments: [
+        {
+          commenterName: "goodPic",
+          Id: "",
+          Msg: "",
+          avatar:
+            "https://images.unsplash.com/photo-1505968409348-bd000797c92e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80",
+        },
+      ],
+      Descritption: "hi my name naresh how are you hello from me",
+      Keywords: " it is a search down querries keyword",
+      hashTags: ["hashtag1", "hashtag2"],
+      Image: [
+        {
+          url: "https://images.unsplash.com/photo-1519419166318-4f5c601b8e6c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+          alt: "imagefromMe",
+        },
+        {
+          url: "https://images.unsplash.com/photo-1519419166318-4f5c601b8e6c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80",
+          alt: "imagefromMe",
+        },
+      ],
+    },
+  ]);
   const [chatsNotification, setChatsNotification] = useState(0);
 
   const [aboutInfo, setAboutInfo] = useState([
@@ -162,6 +228,8 @@ export const UseState = (props) => {
         setOnlineUsersPart1,
         chatsNotification,
         setChatsNotification,
+        blogs,
+        setBlogs,
       }}
     >
       {props.children}

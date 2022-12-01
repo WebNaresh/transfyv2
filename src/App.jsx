@@ -15,6 +15,7 @@ import ChatzState from "./State/Chatz/ChatzState";
 import AppAlert from "./utils/Alert/Alert";
 import SocketState from "./State/SocketHandler/SocketState";
 import TopLoadingBar from "./utils/TopLoadingBar/TopLoadingBar";
+import BlogState from "./State/Blog/BlogState";
 
 function App() {
   const darkTheme = createTheme({
@@ -45,14 +46,16 @@ function App() {
                 <MaterialState>
                   <ChatzState>
                     <SocketState>
-                      <UseEffectState>
-                        <TopLoadingBar />
-                        <TopNavaigation />
-                        <AppProgress />
-                        <AppAlert />
-                        <Route />
-                        {/* <Footer /> */}
-                      </UseEffectState>
+                      <BlogState>
+                        <UseEffectState>
+                          <TopLoadingBar />
+                          <TopNavaigation />
+                          <AppProgress />
+                          <AppAlert />
+                          <Route />
+                          {/* <Footer /> */}
+                        </UseEffectState>
+                      </BlogState>
                     </SocketState>
                   </ChatzState>
                 </MaterialState>

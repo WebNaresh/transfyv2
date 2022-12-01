@@ -4,9 +4,9 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./Component/Home/Home";
 import About from "./Component/About/About";
 import Login from "./Component/Login/Login";
-import Chat from "./Chat/Chat";
-import Messages from "./Chat/Messages/Messages";
 import CollegeM from "./Component/CollegeMatrial/CollegeM";
+import Chat from "./Component/Chat/Chat";
+import Messages from "./Component/Chat/Messages/Messages";
 const App = () => {
   return (
     <Routes>

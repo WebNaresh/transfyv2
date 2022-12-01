@@ -4,8 +4,8 @@ import { IconButton, InputAdornment, InputBase } from "@mui/material";
 import { Stack } from "@mui/system";
 import React from "react";
 import { useContext } from "react";
-import MaterialContext from "../../../State/Material/MaterialContext";
-import UseContext from "../../../State/UseState/UseContext";
+import MaterialContext from "../../../../State/Material/MaterialContext";
+import UseContext from "../../../../State/UseState/UseContext";
 
 const ASTTextBox = () => {
   const { chatInput, setChatInput } = useContext(UseContext);

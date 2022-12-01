@@ -4,8 +4,8 @@ import { useRoundInputBaseStyles } from "@mui-treasury/styles/inputBase/round";
 import { Chatz } from "./Chatz/Chatz";
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import UseContext from "../State/UseState/UseContext";
-import TestContext from "../State/Test/TestContext";
+import UseContext from "../../State/UseState/UseContext";
+import TestContext from "../../State/Test/TestContext";
 import { useEffect } from "react";
 
 const Chat = () => {
