@@ -53,9 +53,16 @@ export const UseState = (props) => {
       LikeCount: 15,
       Comments: [
         {
-          commenterName: "goodPic",
+          commenterName: "Naresh",
           Id: "",
-          Msg: "",
+          Msg: "goodPic",
+          avatar:
+            "https://images.unsplash.com/photo-1505968409348-bd000797c92e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80",
+        },
+        {
+          commenterName: "Naresh",
+          Id: "",
+          Msg: "goodPic",
           avatar:
             "https://images.unsplash.com/photo-1505968409348-bd000797c92e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80",
         },

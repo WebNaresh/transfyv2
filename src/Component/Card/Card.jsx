@@ -12,13 +12,8 @@ import {
 } from "@mui/material/";
 import "./heart.css";
 import { red } from "@mui/material/colors";
-import {
-  MoreVert,
-  Favorite,
-  FavoriteBorder,
-  ShareOutlined,
-} from "@mui/icons-material/";
-import { Skeleton, Stack, Box } from "@mui/material";
+import { MoreVert, ShareOutlined } from "@mui/icons-material/";
+import { Skeleton, Stack, Box, Paper } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useContext, useState, React } from "react";
 import TestContext from "../../State/Test/TestContext";
@@ -28,7 +23,7 @@ import BlogContext from "../../State/Blog/BlogContext";
 
 function CardComponent({ ele }) {
   const { handleLikeButton } = useContext(BlogContext);
-  console.log(ele);
+  const [className, setClassName] = useState("");
 
   const [fav, setFav] = useState(false);
   const [expanded, setExpanded] = useState(false);
@@ -76,7 +71,7 @@ function CardComponent({ ele }) {
             }}
           >
             <div>
-              <ReusableCousel array={ele.Image} />
+              <ReusableCousel className={className} array={ele.Image} />
             </div>
             <Divider />
           </CardMedia>
@@ -85,7 +80,19 @@ function CardComponent({ ele }) {
         <CardActions disableSpacing sx={{ padding: 0 }}>
           <Stack direction={"column"}>
             <Stack direction={"row"}>
-              <section class="like" onClick={handleLikeButton}></section>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <section
+                  className={`like ${className}`}
+                  onClick={() => handleLikeButton(className, setClassName)}
+                ></section>
+                <div>like {ele.LikeCount}</div>
+              </div>
               <IconButton aria-label="share">
                 <ShareOutlined
                   sx={{
@@ -99,11 +106,14 @@ function CardComponent({ ele }) {
         <CardContent
           sx={{ display: "flex ", flexDirection: "column", padding: 0.5 }}
         >
-          <div
+          <Paper
+            elevation={2}
             style={{
               display: "flex",
               width: "100%",
               cursor: "pointer",
+              background: "#e7e7e3",
+              padding: "0.1rem",
             }}
             onClick={handleExpandClick}
           >
@@ -127,11 +137,11 @@ function CardComponent({ ele }) {
             >
               {/* <ExpandMoreIcon /> */}
             </ExpandMore>
-          </div>
+          </Paper>
           <div style={{ display: "flex" }}>
-            {ele.hashTags.map((body) => {
+            {ele.hashTags.map((body, index) => {
               return (
-                <Link to={`/${body}`}>
+                <Link to={`/${body}`} key={index}>
                   <Typography variant="body2" color={"#0095ff"}>
                     #{body}&nbsp;
                   </Typography>
@@ -139,6 +149,53 @@ function CardComponent({ ele }) {
               );
             })}
           </div>
+          <Paper variant="outlined" style={{ padding: 6 }}>
+            <Typography
+              variant="body2"
+              component={"div"}
+              color="GrayText"
+              sx={{
+                fontWeight: "500",
+              }}
+            >
+              comment's
+            </Typography>
+            <div>
+              {ele.Comments.map((element) => {
+                return (
+                  <div style={{ display: "flex" }}>
+                    <Avatar
+                      variant="rounded"
+                      sx={{ objectFit: "fill" }}
+                      src={element.avatar}
+                    />
+                    <div style={{ padding: "0px 15px" }}>
+                      <Typography
+                        variant="button"
+                        component={"div"}
+                        color="ActiveBorder"
+                        sx={{
+                          fontWeight: "500",
+                        }}
+                      >
+                        {element.commenterName}&nbsp;
+                      </Typography>
+                      <Typography
+                        variant="caption"
+                        component={"div"}
+                        color="GrayText"
+                        sx={{
+                          fontWeight: "500",
+                        }}
+                      >
+                        {element.Msg}
+                      </Typography>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Paper>
         </CardContent>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>

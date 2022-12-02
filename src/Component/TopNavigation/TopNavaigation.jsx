@@ -61,7 +61,6 @@ const TopNavaigation = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
@@ -206,22 +205,27 @@ const TopNavaigation = () => {
               open={Boolean(anchorEl)}
               onClose={handleClose}
             >
-              <Link to={"/profile"}>
-                <MenuItem onClick={handleClose}>
-                  <ListItemIcon>
-                    {user.avatar !== null ? (
-                      <Avatar
-                        imgProps={{ loading: "lazy" }}
-                        src={user.avatar}
-                        sx={{ width: 24, height: 24 }}
-                      />
-                    ) : (
-                      <AccountCircle />
-                    )}
-                  </ListItemIcon>
-                  Profile
-                </MenuItem>
-              </Link>
+              {user.name !== null ? (
+                <Link to={"/profile"}>
+                  <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                      {user.avatar !== null ? (
+                        <Avatar
+                          imgProps={{ loading: "lazy" }}
+                          src={user.avatar}
+                          alt={user.name}
+                          sx={{ width: 24, height: 24 }}
+                        />
+                      ) : (
+                        <AccountCircle />
+                      )}
+                    </ListItemIcon>
+                    Profile
+                  </MenuItem>
+                </Link>
+              ) : (
+                ""
+              )}
               <Link to={"/notification"}>
                 <MenuItem onClick={handleClose}>
                   <ListItemIcon>

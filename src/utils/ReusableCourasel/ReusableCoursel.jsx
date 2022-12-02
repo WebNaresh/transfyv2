@@ -1,7 +1,15 @@
-import React from "react";
-import { Button, Paper, Stack } from "@mui/material";
+import React, { useEffect } from "react";
+import { Button, Stack } from "@mui/material";
 import Carousel from "react-material-ui-carousel";
-const ReusableCousel = ({ array }) => {
+import { useRef } from "react";
+const ReusableCousel = ({ array, className }) => {
+  useEffect(() => {
+    setTimeout(() => {
+      firstRef.current.classList.remove("zindex");
+    }, 2100);
+    // eslint-disable-next-line
+  }, [className]);
+  const firstRef = useRef(null);
   function Item(props) {
     return (
       <Stack>
@@ -51,7 +59,8 @@ const ReusableCousel = ({ array }) => {
         }}
       >
         <section
-          class="like unique"
+          className={`like unique ${className}`}
+          ref={firstRef}
           style={{
             height: "60%",
           }}
