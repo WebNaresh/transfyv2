@@ -201,6 +201,7 @@ export const UseState = (props) => {
   const [peer, setpeer] = useState(null);
 
   const [currentUserPeerId, setCurrentUserPeerId] = useState(null);
+  console.log(`🚀 ~ currentUserPeerId`, currentUserPeerId);
 
   return (
     <UseContext.Provider
