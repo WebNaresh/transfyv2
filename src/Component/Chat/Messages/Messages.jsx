@@ -7,6 +7,7 @@ import UseContext from "../../../State/UseState/UseContext";
 import MaterialContext from "../../../State/Material/MaterialContext";
 import { useParams } from "react-router-dom";
 import ASTTextBox from "./AutoSizeTextBox/ASTTextBox";
+import Speed1 from "./AutoSizeTextBox/SpeedDial/Speed1";
 
 const Messages = () => {
   const params = useParams();
@@ -17,6 +18,7 @@ const Messages = () => {
     if (currentUser._id === null) {
       getTheUser(params.id);
     }
+    // eslint-disable-next-line
   }, [chatArea, getTheUser, params]);
 
   return (
@@ -34,6 +36,7 @@ const Messages = () => {
           );
         })}
       </Stack>
+      <Speed1 paramsId={params.id} />
       <ASTTextBox />
     </div>
   );

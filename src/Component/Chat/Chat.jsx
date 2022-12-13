@@ -15,7 +15,7 @@ const Chat = () => {
   useEffect(() => {
     if (user.name === null) {
       handleAlert(true, "warning", "Please Login To Access this route");
-      // redirect("/login");
+      redirect("/login");
     }
     // eslint-disable-next-line
   }, []);

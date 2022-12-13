@@ -81,10 +81,23 @@ export const TestState = (props) => {
   const handleSearch = (value) => {
     setSearchInput(value.target.value);
     const newArray = dummyarray.filter((element) => {
-      console.log(element.email.includes(value.target.value));
       return element.email.includes(value.target.value);
     });
     setFriends([...newArray]);
+  };
+
+  const playMusic = () => {
+    let audio = new Audio("ting.mp3");
+    audio.play();
+  };
+  const makeCurrentUserNull = () => {
+    setCurrentUser({
+      name: null,
+      email: null,
+      avatar: null,
+      status: null,
+      _id: null,
+    });
   };
   return (
     <TestContext.Provider
@@ -100,6 +113,8 @@ export const TestState = (props) => {
         addMessageArray,
         addRecentMessageArray,
         handleSearch,
+        playMusic,
+        makeCurrentUserNull,
       }}
     >
       {props.children}

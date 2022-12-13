@@ -17,7 +17,6 @@ export const ChatState = (props) => {
       }
     });
     setFriends([...friends]);
-    console.log(friend);
     handleLoader(true, "yellow");
     getMessagesApiRequest([user._id, friend._id]);
     setCurrentUser({ ...friend, status: null });

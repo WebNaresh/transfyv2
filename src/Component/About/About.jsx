@@ -73,25 +73,27 @@ export default function About() {
             College Proffesional's
           </Typography>
           {aboutInfo.map(({ name, url, message, index }) => {
-            {
-              return index % 2 === 0 ? (
-                <AboutCard1
-                  key={index}
-                  side={"right"}
-                  name={name}
-                  url={url}
-                  message={message}
-                />
-              ) : (
-                <AboutCard1
-                  key={index}
-                  side={"left"}
-                  name={name}
-                  url={url}
-                  message={message}
-                />
-              );
-            }
+            return (
+              <>
+                {index % 2 === 0 ? (
+                  <AboutCard1
+                    key={index}
+                    side={"right"}
+                    name={name}
+                    url={url}
+                    message={message}
+                  />
+                ) : (
+                  <AboutCard1
+                    key={index}
+                    side={"left"}
+                    name={name}
+                    url={url}
+                    message={message}
+                  />
+                )}
+              </>
+            );
           })}
         </Stack>
         <Stack>

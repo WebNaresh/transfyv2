@@ -177,6 +177,7 @@ export const UseState = (props) => {
     status: null,
     avatar: null,
   });
+
   const [messages, setMessages] = useState([]);
 
   const [onlineUsersPart1, setOnlineUsersPart1] = useState([]);
@@ -188,6 +189,18 @@ export const UseState = (props) => {
   }, [messages.length]);
 
   const [searchInput, setSearchInput] = useState("");
+
+  const userVideo = useRef(null);
+
+  const myVideo = useRef(null);
+
+  const [stream, setStream] = useState();
+
+  const [peerId, setPeerId] = useState(null);
+
+  const [peer, setpeer] = useState(null);
+
+  const [currentUserPeerId, setCurrentUserPeerId] = useState(null);
 
   return (
     <UseContext.Provider
@@ -237,6 +250,16 @@ export const UseState = (props) => {
         setChatsNotification,
         blogs,
         setBlogs,
+        userVideo,
+        myVideo,
+        stream,
+        setStream,
+        peerId,
+        setPeerId,
+        peer,
+        setpeer,
+        currentUserPeerId,
+        setCurrentUserPeerId,
       }}
     >
       {props.children}

@@ -38,10 +38,8 @@ export const ApiState = (props) => {
         setCookie("token", data.data.token, [options]);
       })
       .catch((e) => {
-        console.log(e);
         handleLoader(true, "red");
         // redirect("/login");
-        console.log(e);
         handleAlert(
           true,
           "warning",
@@ -64,7 +62,6 @@ export const ApiState = (props) => {
         setDummyarray(jwtDecode(data.users).users);
       })
       .catch((e) => {
-        console.log(e);
         handleAlert(
           true,
           "warning",
@@ -82,10 +79,8 @@ export const ApiState = (props) => {
     // axios
     //   .post(process.env.REACT_APP_SendMessage, data, config)
     //   .catch((errors) => {
-    //     console.log(errors);
     //   })
     //   .then((response) => {
-    //     console.log(response);
     //   });
   };
   const getMessagesApiRequest = (userId) => {

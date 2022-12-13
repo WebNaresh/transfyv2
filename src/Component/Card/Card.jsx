@@ -161,9 +161,9 @@ function CardComponent({ ele }) {
               comment's
             </Typography>
             <div>
-              {ele.Comments.map((element) => {
+              {ele.Comments.map((element, index) => {
                 return (
-                  <div style={{ display: "flex" }}>
+                  <div key={index} style={{ display: "flex" }}>
                     <Avatar
                       variant="rounded"
                       sx={{ objectFit: "fill" }}

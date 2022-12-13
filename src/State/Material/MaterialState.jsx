@@ -84,7 +84,6 @@ export const MaterialState = (props) => {
   const handleFailure = (error) => {
     handleLoader(true, "red");
     handleAlert(true, "warning", "connecting with your google account Failed");
-    console.log(error);
   };
   const handleLogin = async (credentialResponse) => {
     handleLoader(true, "inherit");
@@ -99,7 +98,6 @@ export const MaterialState = (props) => {
   const handleLogout = () => {
     handleLoader(true, "blue");
     socket.emit("dis", user._id);
-    console.log(socket);
 
     removeCookie("token");
     makeItNull();
@@ -110,9 +108,7 @@ export const MaterialState = (props) => {
     let getUser = friends.filter((ele) => {
       return ele._id === id;
     });
-    console.log(friends);
     if (getUser[0] !== undefined) {
-      console.log(`🚀 ~ getUser`, getUser);
       concatTheUser(getUser[0]);
       getMessagesApiRequest([user._id, getUser[0]._id]);
     }
